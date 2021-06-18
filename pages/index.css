@@ -1,9 +1,25 @@
 @import url("../vendor/normalize.css");
 @import url("../vendor/fonts/fonts.css");
-/*@import url("../blocks/page/page.css");*/
+@import url("../blocks/page/page.css");
+
+@import url("../blocks/header/header.css");
+@import url("../blocks/header/__logo/header__logo.css");
+
+@import url("../blocks/content/content.css");
+@import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__description/profile__description.css");
+@import url("../blocks/profile/__info/profile__info.css");
+@import url("../blocks/profile/__author/profile__author.css");
+@import url("../blocks/profile/__name/profile__name.css");
+@import url("../blocks/profile/__edit-button/profile__edit-button.css");
+@import url("../blocks/profile/__specialization/profile__specialization.css");
+@import url("../blocks/profile/__add-button/profile__add-button.css");
+
+
 
 /* TODO: Вспомогательные границы для отладки */
-div, img, h1, h2, h3, h4, p, a, ul, li, article, footer, section {
+div, img, h1, h2, h3, h4, p, a, ul, li, article, footer, section, header, main {
   border: 1px solid red;
 }
 /* Конец вспомогательных границ*/

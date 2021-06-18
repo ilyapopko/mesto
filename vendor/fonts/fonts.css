@@ -15,7 +15,16 @@
   src: url("Inter-Black.woff2") format("woff2"),
     url("Inter-Black.woff") format("woff");
 }
-/*сорри с первого раза не вкурил. Визуально смотрится очень похоже*/
+
+@font-face {
+  font-family: "Inter";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+  src: url("Inter-Medium.woff2") format("woff2"),
+    url("Inter-Medium.woff") format("woff");
+}
+
 @font-face {
   font-family: "Inter";
   font-display: swap;
