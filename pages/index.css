@@ -1,0 +1,9 @@
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts/fonts.css");
+/*@import url("../blocks/page/page.css");*/
+
+/* TODO: Вспомогательные границы для отладки */
+div, img, h1, h2, h3, h4, p, a, ul, li, article, footer, section {
+  border: 1px solid red;
+}
+/* Конец вспомогательных границ*/
