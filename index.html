@@ -21,12 +21,11 @@
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__specialization">Исследователь океана</p>
             </div>
-            <img src="./images/edit-button.svg" alt="Редактировать профиль" class="profile__edit-button">
+            <img src="./images/editIcon.svg" alt="Редактировать профиль" class="profile__edit-button">
           </div>
         </div>
-        <img src="./images/add-button.svg" alt="Добавить фото" class="profile__add-button">
+        <img src="./images/addIcon.svg" alt="Добавить фото" class="profile__add-button">
       </section>
-
       <section class="elements">
         <div class="element">
           <img src="./images/photo_karachayvsk.jpg" alt="Картинка" class="element__image">
@@ -71,16 +70,22 @@
         </div>
     </div>
     </section>
-
-      <section class="popup">
-      </section>
-
+    <section class="popup popup_opened">
+      <form action="#" class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <fieldset class="popup__container-info">
+          <input type="text" class="popup__name-author" value="" id="author-name" placeholder="Автор" required>
+          <input type="text" class="popup__specialization" value="" id="author-specialization" placeholder="О себе" required>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </fieldset>
+        <button class="popup__reset-button" type="reset" aria-label="Закрыть"></button>
+      </form>
+    </section>
     </main>
-
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-
   </div>
+  <script src="./pages/script.js"></script>
 </body>
 </html>

@@ -29,6 +29,18 @@
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/_opened/popup_opened.css");
+
+@import url("../blocks/popup/__container/popup__container.css");
+@import url("../blocks/popup/__heading/popup__heading.css");
+@import url("../blocks/popup/__container-info/popup__container-info.css");
+@import url("../blocks/popup/__name-author/popup__name-author.css");
+@import url("../blocks/popup/__specialization/popup__specialization.css");
+@import url("../blocks/popup/__save-button/popup__save-button.css");
+@import url("../blocks/popup/__reset-button/popup__reset-button.css");
+
+
 
 /* TODO: Вспомогательные границы для отладки */
 div, img, h1, h2, h3, h4, p, a, ul, li, article, footer, section, header, main {
