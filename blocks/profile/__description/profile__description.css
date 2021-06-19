@@ -3,7 +3,7 @@
   justify-content: start;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 680px) {
   .profile__description {
     justify-content: center;
   }

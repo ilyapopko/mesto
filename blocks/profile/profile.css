@@ -1,12 +1,15 @@
-.profile__info {
+.profile {
   font-size: 0;
   display: flex;
   justify-content: space-between;
+  margin: 0 19px 50px 19px;
+
 }
 
 @media screen and (max-width: 680px) {
-  .profile__info {
+  .profile {
+    max-width: 282px;
+    margin: 0 19px 36px;
     flex-direction: column;
-    margin-bottom: 36px;
   }
 }

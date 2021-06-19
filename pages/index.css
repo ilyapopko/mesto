@@ -1,5 +1,7 @@
 @import url("../vendor/normalize.css");
 @import url("../vendor/fonts/fonts.css");
+
+@import url("../blocks/body/body.css");
 @import url("../blocks/page/page.css");
 
 @import url("../blocks/header/header.css");
@@ -16,10 +18,20 @@
 @import url("../blocks/profile/__specialization/profile__specialization.css");
 @import url("../blocks/profile/__add-button/profile__add-button.css");
 
+@import url("../blocks/elements/elements.css");
+
+@import url("../blocks/element/element.css");
+@import url("../blocks/element/__image/element__image.css");
+@import url("../blocks/element/__places/element__places.css");
+@import url("../blocks/element/__place/element__place.css");
+@import url("../blocks/element/__likes/element__likes.css");
+
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/__copyright/footer__copyright.css");
 
 
 /* TODO: Вспомогательные границы для отладки */
 div, img, h1, h2, h3, h4, p, a, ul, li, article, footer, section, header, main {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 /* Конец вспомогательных границ*/

@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 680px) {
   .profile__specialization {
     font-size: 14px;
     line-height: 17px;

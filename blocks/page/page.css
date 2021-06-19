@@ -1,12 +1,16 @@
 .page {
-  background-color: #000;
-  margin: 0;
+  /* background-color: #000; */
+  max-width: 918px;
+  min-width: 320px;
+  margin: 0 auto;
   padding: 0;
-  color: #fff;
+  /* color: #fff;
   font-family: 'Inter', 'Arial', sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%; */
 }
+
+
