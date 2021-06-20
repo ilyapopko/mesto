@@ -24,12 +24,3 @@
   src: url("Inter-Medium.woff2") format("woff2"),
     url("Inter-Medium.woff") format("woff");
 }
-
-@font-face {
-  font-family: "Inter";
-  font-display: swap;
-  font-style: bold;
-  font-weight: 700;
-  src: url("Inter-Bold.woff2") format("woff2"),
-    url("Inter-Bold.woff") format("woff");
-}

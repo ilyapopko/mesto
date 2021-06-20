@@ -7,6 +7,10 @@
   color: #fff;
   border: none;
   border-radius: 2px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .popup__save-button:hover {
@@ -17,5 +21,7 @@
   .popup__save-button {
     width: 238px;
     height: 46px;
-  }
+    font-size: 14px;
+    line-height: 17px;
+    }
 }

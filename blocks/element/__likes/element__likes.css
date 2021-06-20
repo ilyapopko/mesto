@@ -1,14 +1,10 @@
 .element__likes {
   min-width: 22px;
   min-height: 19px;
-  /* border: 1px solid #000; */
   background-image: url("./../../../images/heart.svg");
   background-repeat: no-repeat;
   background-size: cover;
   align-self: center;
-  /* background-color: #000; */
-  /* color: #000; */
-
 }
 
 .element__likes:hover {

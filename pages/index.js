@@ -51,5 +51,4 @@ function clickLikesButton (evt) {
 editProfileButton.addEventListener('click', openProfileDialog);
 closeProfileButton.addEventListener('click', closeProfileDialog);
 formProfile.addEventListener('submit', formSubmitHandler);
-
 areaElements.addEventListener("click", clickLikesButton);

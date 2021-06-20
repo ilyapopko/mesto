@@ -1,8 +1,6 @@
 .profile__description {
   display: flex;
   justify-content: start;
-  /* width: max-content - 192px; */
-  /* width: 70%; */
 }
 
 @media screen and (max-width: 700px) {
