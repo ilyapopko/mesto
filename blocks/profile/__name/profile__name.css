@@ -5,11 +5,55 @@
   line-height: 48px;
   font-style: normal;
   font-weight: 500;
+
+  border: 1px solid red;
+
+  /* max-width: minmax(500px, auto); */
+  /* max-width: 500px; */
+  /* max-width: calc( - 280px); */
+  /* max-width: calc(100%-500px); */
+  /* max-width: calc(250px + 250 * ((100vw - 320px) / 1600)); */
+  /* width: 100%; */
+  /* width: minmax(calc(min(100vw,918px)-380px), 500px); */
+
+  /* width: min(calc(min(100vw, 918px)-380px), 500px); */
+
+  /* max-width: calc(250px + 250 * ((100vw - 320px) / 1600)); */
+  max-width: 500px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 918px) {
+  .profile__name {
+    max-width: 450px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .profile__name {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profile__name {
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .profile__name {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 700px) {
   .profile__name {
     font-size: 27px;
     line-height: 33px;
+    max-width: 254px;
   }
 }
