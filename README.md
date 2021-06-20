@@ -16,4 +16,4 @@
 ## Планы по доработке:
 * Реализовать функционал backend, формы редактирования аватарки, формы добавления фотографий
 ## Страница на GitHub Pages:
-* [Ссылка на страницу](https://ilyapopko.github.io/russian-travel/index.html)
+* [Ссылка на страницу](https://ilyapopko.github.io/mesto/index.html)
