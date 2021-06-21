@@ -1,7 +1,15 @@
 .header__logo {
   width: 142px;
   height: 33px;
+  display: block;
+  background-image: url("./../../../images/logo.svg");
+  background-color: transparent;
+  background-size: cover;
+  text-decoration: none;
+}
 
+.header__logo:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 700px) {

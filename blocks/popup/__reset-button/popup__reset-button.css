@@ -10,6 +10,7 @@
   width: 57px;
   height: 57px;
   background-size: cover;
+  box-sizing: border-box;
 }
 
 .popup__reset-button:hover {

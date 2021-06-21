@@ -3,8 +3,12 @@
   height: 50px;
   border: 2px solid white;
   border-radius: 2px;
-  object-fit: none;
   align-self: center;
+  background-color: transparent;
+  background-image: url("./../../../images/addIcon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
 }
 
 .profile__add-button:hover {

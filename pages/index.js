@@ -10,7 +10,7 @@ let inputSpecialization = document.querySelector('#author-specialization');
 
 let formProfile = document.querySelector('.popup__container');
 
-let areaElements = document.querySelector('.elements');
+let areaElements = document.querySelector('.cards');
 
 function openProfileDialog() {
   if (popupElement.classList.contains('popup_opened')) {
@@ -42,10 +42,10 @@ function formSubmitHandler (evt) {
 function clickLikesButton (evt) {
   evt.preventDefault();
   let objElement = evt.target;
-  if (!objElement.classList.contains('element__likes')) {
+  if (!objElement.classList.contains('card__likes')) {
     return;
   }
-  objElement.classList.toggle('element__likes_active');
+  objElement.classList.toggle('card__likes_active');
 }
 
 editProfileButton.addEventListener('click', openProfileDialog);

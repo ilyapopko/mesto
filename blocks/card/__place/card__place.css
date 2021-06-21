@@ -1,0 +1,14 @@
+.card__place {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 900;
+  font-style: normal;
+  color: #000;
+  margin: 0;
+  padding: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 210px; /*отступ по макету совсем не очевидный, или я не понимаю как его определить - элементы с точками и лайки не разделены. Поставил навскидку.*/
+}
