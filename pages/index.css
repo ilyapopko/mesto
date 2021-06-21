@@ -40,7 +40,7 @@
 
 /* TODO: Вспомогательные границы для отладки */
 div, img, h1, h2, h3, h4, p, a, ul, li, article, footer, section, header, main {
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
   /* Спасибо, реально лучше бордера */
 }
 /* Конец вспомогательных границ*/
