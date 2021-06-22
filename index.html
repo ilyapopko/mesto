@@ -21,52 +21,52 @@
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__specialization">Исследователь океана</p>
             </div>
-            <button class="profile__edit-button" aria-label="Редактировать профиль"></button>
+            <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
           </div>
         </div>
-        <button class="profile__add-button" aria-label="Добавить фото"></button>
+        <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
       </section>
       <section class="cards">
         <article class="card">
           <img src="./images/photo_karachayvsk.jpg" alt="Картинка Карачаевск" class="card__image">
           <div class="card__places">
             <h2 class="card__place">Карачаевск</h2>
-            <button class="card__likes" aria-label="Выделить"></button>
+            <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/photo_albrus.jpg" alt="Картинка Эльбрус" class="card__image">
           <div class="card__places">
             <h2 class="card__place">Эльбрус</h2>
-            <button class="card__likes" aria-label="Выделить"></button>
+            <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/photo_dombay.jpg" alt="Картинка Домбай" class="card__image">
           <div class="card__places">
             <h2 class="card__place">Домбай</h2>
-            <button class="card__likes" aria-label="Выделить"></button>
+            <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
           </div>
       </article>
       <article class="card">
         <img src="./images/photo_karachayvsk.jpg" alt="Картинка Карачаево-Черкесская республика" class="card__image">
         <div class="card__places">
           <h2 class="card__place">Карачаево-Черкесская республика</h2>
-          <button class="card__likes" aria-label="Выделить"></button>
+          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
         </div>
       </article>
       <article class="card">
         <img src="./images/photo_albrus.jpg" alt="Картинка Эльбрус" class="card__image">
         <div class="card__places">
           <h2 class="card__place">Эльбрус</h2>
-          <button class="card__likes" aria-label="Выделить"></button>
+          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
         </div>
       </article>
       <article class="card">
         <img src="./images/photo_dombay.jpg" alt="Картинка Домбай" class="card__image">
         <div class="card__places">
           <h2 class="card__place">Домбай</h2>
-          <button class="card__likes" aria-label="Выделить"></button>
+          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
         </div>
     </article>
     </section>
@@ -74,11 +74,11 @@
       <form action="#" class="popup__container" name="formEditProfile">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__container-info">
-          <input type="text" class="popup__edit-field popup__name-author" id="author-name" placeholder="Автор" name="authorName" required>
-          <input type="text" class="popup__edit-field popup__specialization" id="author-specialization" placeholder="О себе" name="authorSpecialization" required>
+          <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="authorName" required>
+          <input type="text" class="popup__edit-field" id="author-specialization" placeholder="О себе" name="authorSpecialization" required>
           <button class="popup__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
         </fieldset>
-        <button class="popup__reset-button" type="reset" aria-label="Закрыть"></button>
+        <button class="popup__reset-button" type="button" aria-label="Закрыть"></button>
       </form>
     </article>
     </main>
