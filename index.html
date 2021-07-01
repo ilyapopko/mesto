@@ -27,51 +27,11 @@
         <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
       </section>
       <section class="cards">
-        <article class="card">
-          <img src="./images/photo_karachayvsk.jpg" alt="Картинка Карачаевск" class="card__image">
-          <div class="card__places">
-            <h2 class="card__place">Карачаевск</h2>
-            <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/photo_albrus.jpg" alt="Картинка Эльбрус" class="card__image">
-          <div class="card__places">
-            <h2 class="card__place">Эльбрус</h2>
-            <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/photo_dombay.jpg" alt="Картинка Домбай" class="card__image">
-          <div class="card__places">
-            <h2 class="card__place">Домбай</h2>
-            <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
-          </div>
-      </article>
-      <article class="card">
-        <img src="./images/photo_karachayvsk.jpg" alt="Картинка Карачаево-Черкесская республика" class="card__image">
-        <div class="card__places">
-          <h2 class="card__place">Карачаево-Черкесская республика</h2>
-          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/photo_albrus.jpg" alt="Картинка Эльбрус" class="card__image">
-        <div class="card__places">
-          <h2 class="card__place">Эльбрус</h2>
-          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/photo_dombay.jpg" alt="Картинка Домбай" class="card__image">
-        <div class="card__places">
-          <h2 class="card__place">Домбай</h2>
-          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
-        </div>
-    </article>
     </section>
-    <article class="popup">
-      <form action="#" class="popup__container" name="formEditProfile">
+
+
+    <article class="popup popup_edit-profile">
+      <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__container-info">
           <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="authorName" required>
@@ -81,10 +41,43 @@
         <button class="popup__reset-button" type="button" aria-label="Закрыть"></button>
       </form>
     </article>
+
+    <article class="popup popup_add-card">
+      <form action="#" class="popup__container" name="formAddCard" id="formAddCard">
+        <h2 class="popup__heading">Новое место</h2>
+        <fieldset class="popup__container-info">
+          <input type="text" class="popup__edit-field" id="place-name" placeholder="Название" name="placeName" required>
+          <input type="text" class="popup__edit-field" id="place-link" placeholder="Ссылка на картинку" name="placeLink" required>
+          <button class="popup__save-button" type="submit" aria-label="Добавить карточку">Создать</button>
+        </fieldset>
+        <button class="popup__reset-button" type="button" aria-label="Закрыть"></button>
+      </form>
+    </article>
+
+    <div class="popup popup_view-card">
+      <figure class="popup__photo-container">
+        <img src="#" alt="Фотография" class="popup__image">
+        <figcaption class="popup__photo-caption"></figcaption>
+        <button class="popup__reset-button" type="button" aria-label="Закрыть"></button>
+      </figure>
+    </div>
+
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Место Россия</p>
     </footer>
+
+    <template id ="card-template">
+      <article class="card">
+        <img src="#" alt="Фотография" class="card__image">
+        <button class="card__delete-button" type="button" aria-label="Удалить карточку"></button>
+        <div class="card__places">
+          <h2 class="card__place"></h2>
+          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
+        </div>
+      </article>
+    </template>
+
   </div>
   <script src="./pages/index.js"></script>
 </body>
