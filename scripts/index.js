@@ -31,15 +31,10 @@ function closeFormDialog(dialog) {
   dialog.classList.remove('popup_opened');
 }
 
-function openViewImage(evt) {
-  //здесь без поиска полей не обойтись похоже.
-  const objElement = evt.target;
-  const objCard = objElement.closest('.card');
-  const cardDesc = objCard.querySelector('.card__place');
-  popupViewImage.src = objElement.src;
-  popupViewImage.alt = "Фотография " + cardDesc.textContent;
-  popupViewDesc.textContent = cardDesc.textContent;
-
+function openViewImage(name, src) {
+  popupViewImage.src = src;
+  popupViewImage.alt = "Фотография " + name;
+  popupViewDesc.textContent = name;
   openFormDialog(popupViewForm);
 }
 
@@ -63,36 +58,18 @@ function createCard(name, src) {
   linkImage.alt = 'Фотография ' + name;
   placeCaption.textContent = name;
 
-  linkImage.addEventListener('click', openViewImage);
+  linkImage.addEventListener('click', () => openViewImage(name, src));
   deleteButton.addEventListener('click', deleteCard);
   likeButton.addEventListener('click', toggleFlagLike);
 
-  // cardElement.addEventListener('click', (evt) => {
-  //   evt.preventDefault();
-  //   const objElement = evt.target;
-  //   if (objElement.classList.contains('card__likes')) {
-  //     objElement.classList.toggle('card__likes_active');
-  //   }
-  //   else if (objElement.classList.contains('card__delete-button')) {
-  //     const objCard = objElement.closest('.card');
-  //     objCard.remove();
-  //   }
-  //   else if (objElement.classList.contains('card__image')) {
-  //     popupViewImage.src = src;
-  //     popupViewImage.alt = "Фотография " + name;
-  //     popupViewDesc.textContent = name;
-  //     openFormDialog(popupViewForm);
-  //   }
-  // });
-  return cardElement;
+   return cardElement;
 }
 
 function clickPopupElements (evt) {
   const objElement = evt.target;
-  if (objElement !== evt.currentTarget && !objElement.classList.contains('popup__reset-button')) {
-    return
+  if (objElement === evt.currentTarget || objElement.classList.contains('popup__reset-button')) {
+    closeFormDialog(evt.currentTarget);
   }
-  closeFormDialog(evt.currentTarget);
 }
 
 editProfileButton.addEventListener('click', () => {
@@ -106,14 +83,12 @@ addCardButton.addEventListener('click', () => {
   openFormDialog(popupAddForm);
 });
 
-popupProfileForm.addEventListener('click', clickPopupElements);
-popupAddForm.addEventListener('click', clickPopupElements);
-popupViewForm.addEventListener('click', clickPopupElements);
+popupProfileForm.addEventListener('mousedown', clickPopupElements);
+popupAddForm.addEventListener('mousedown', clickPopupElements);
+popupViewForm.addEventListener('mousedown', clickPopupElements);
 
 formProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const objElement = evt.target;
-
   profileNameAuthor.textContent = inputNameAuthor.value;
   profileSpecialization.textContent = inputSpecialization.value;
   closeFormDialog(popupProfileForm);
