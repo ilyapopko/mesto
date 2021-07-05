@@ -114,6 +114,8 @@ formProfile.addEventListener('submit', (evt) => {
   profileNameAuthor.textContent = inputNameAuthor.value;
   profileSpecialization.textContent = inputSpecialization.value;
   closeFormDialog(popupProfileForm);
+
+
 });
 
 formAddCard.addEventListener('submit', (evt) => {
@@ -122,6 +124,8 @@ formAddCard.addEventListener('submit', (evt) => {
   const element = createCard(inputCardName.value, inputCardLink.value);
   cardsContainer.prepend(element);
   closeFormDialog(popupAddCard);
+
+  
   //form.reset(); //это было условием 5 работы
 });
 

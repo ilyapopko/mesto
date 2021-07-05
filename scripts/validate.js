@@ -11,7 +11,9 @@ function clearValidationFields(selectors, formElement) {
     hideInputError(selectors, formElement, inputElement);
   });
 
-  enableSubmitButton(buttonElement, selectors.inactiveButtonClass);
+  if (buttonElement) {
+    enableSubmitButton(buttonElement, selectors.inactiveButtonClass);
+  }
 }
 
 function showInputError({inputErrorClass, errorClass}, formElement, inputElement, errorMessage) { //спасибо, действительно так понятнее, сразу как то не дошло ))
