@@ -31,11 +31,13 @@
 
 
     <article class="popup popup_edit-profile">
-      <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile">
+      <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile" novalidate>
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__container-info">
-          <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="authorName" required>
-          <input type="text" class="popup__edit-field" id="author-specialization" placeholder="О себе" name="authorSpecialization" required>
+          <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="authorName" minlength="2" maxlength="40" required>
+          <span id="author-name-error" class="popup__input-error"></span>
+          <input type="text" class="popup__edit-field" id="author-specialization" placeholder="О себе" name="authorSpecialization" minlength="2" maxlength="200" required>
+          <span id="author-specialization-error" class="popup__input-error"></span>
           <button class="popup__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
         </fieldset>
         <button class="popup__reset-button" type="button" aria-label="Закрыть"></button>
@@ -43,11 +45,13 @@
     </article>
 
     <article class="popup popup_add-card">
-      <form action="#" class="popup__container" name="formAddCard" id="formAddCard">
+      <form action="#" class="popup__container" name="formAddCard" id="formAddCard" novalidate>
         <h2 class="popup__heading">Новое место</h2>
         <fieldset class="popup__container-info">
-          <input type="text" class="popup__edit-field" id="place-name" placeholder="Название" name="placeName" required>
+          <input type="text" class="popup__edit-field" id="place-name" placeholder="Название" name="placeName" minlength="2" maxlength="30" required>
+          <span id="place-name-error" class="popup__input-error"></span>
           <input type="url" class="popup__edit-field" id="place-link" placeholder="Ссылка на картинку" name="placeLink" required>
+          <span id="place-link-error" class="popup__input-error"></span>
           <button class="popup__save-button" type="submit" aria-label="Добавить карточку">Создать</button>
         </fieldset>
         <button class="popup__reset-button" type="button" aria-label="Закрыть"></button>
@@ -80,6 +84,7 @@
 
   </div>
   <script src="./scripts/test_data.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -23,12 +23,25 @@ const popupViewForm = document.querySelector('.popup_view-card');
 const popupViewImage = document.querySelector('.popup__image');
 const popupViewDesc = document.querySelector('.popup__photo-caption');
 
+const selectors = {
+  // formSelector: '.popup__form',
+  inputSelector: '.popup__edit-field',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__edit-field_type-error',
+  errorClass: 'popup__input-error_visible'
+};
+
 function openFormDialog(dialog) {
   dialog.classList.add('popup_opened');
+  dialog.addEventListener('keydown', closePopupForEsc);
+  dialog.addEventListener('mousedown', clickPopupElements);
 }
 
 function closeFormDialog(dialog) {
   dialog.classList.remove('popup_opened');
+  dialog.removeEventListener('keydown', closePopupForEsc);
+  dialog.removeEventListener('mousedown', clickPopupElements);
 }
 
 function openViewImage(name, src) {
@@ -72,20 +85,37 @@ function clickPopupElements (evt) {
   }
 }
 
+function closePopupForEsc (evt) {
+  if (evt.key === 'Escape') {
+    closeFormDialog(evt.target.closest('.popup'));
+  }
+}
+
 editProfileButton.addEventListener('click', () => {
   inputNameAuthor.value = profileNameAuthor.textContent;
   inputSpecialization.value = profileSpecialization.textContent;
+
+  ValidateForm(selectors, formProfile);
+
   openFormDialog(popupProfileForm);
 });
 
 addCardButton.addEventListener('click', () => {
   formAddCard.reset();
+
+  ValidateForm(selectors, formAddCard);
+
   openFormDialog(popupAddForm);
 });
 
-popupProfileForm.addEventListener('mousedown', clickPopupElements);
-popupAddForm.addEventListener('mousedown', clickPopupElements);
-popupViewForm.addEventListener('mousedown', clickPopupElements);
+// popupProfileForm.addEventListener('mousedown', clickPopupElements);
+// popupAddForm.addEventListener('mousedown', clickPopupElements);
+// popupViewForm.addEventListener('mousedown', clickPopupElements);
+
+// inputNameAuthor.addEventListener('keydown', closePopupForEsc);
+// inputSpecialization.addEventListener('keydown', closePopupForEsc);
+// inputCardName.addEventListener('keydown', closePopupForEsc);
+// inputCardLink.addEventListener('keydown', closePopupForEsc);
 
 formProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -102,4 +132,6 @@ formAddCard.addEventListener('submit', (evt) => {
   closeFormDialog(popupAddForm);
   objForm.reset();
 });
+
+enableValidation(selectors);
 
