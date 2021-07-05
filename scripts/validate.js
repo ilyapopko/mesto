@@ -4,18 +4,28 @@ function hasInvalidInput(inputList) {
   })
 }
 
-function showInputError(selectors, formElement, inputElement, errorMessage) {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add(selectors.inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(selectors.errorClass);
+function clearValidationFields(selectors, formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
+  const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
+  inputList.forEach((inputElement) => {
+    hideInputError(selectors, formElement, inputElement);
+  });
+
+  enableSubmitButton(buttonElement, selectors.inactiveButtonClass);
 }
 
-function hideInputError(selectors, formElement, inputElement) {
+function showInputError({inputErrorClass, errorClass}, formElement, inputElement, errorMessage) { //спасибо, действительно так понятнее, сразу как то не дошло ))
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(selectors.inputErrorClass);
+  inputElement.classList.add(inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(errorClass);
+}
+
+function hideInputError({inputErrorClass, errorClass}, formElement, inputElement) {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(inputErrorClass);
   errorElement.textContent = '';
-  errorElement.classList.remove(selectors.errorClass);
+  errorElement.classList.remove(errorClass);
 }
 
 function checkInputValidity(selectors, formElement, inputElement) {
@@ -26,24 +36,22 @@ function checkInputValidity(selectors, formElement, inputElement) {
   }
 }
 
-function toggleButtonState(selectors, inputList, buttonElement) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(selectors.inactiveButtonClass);
-  } else {
-    buttonElement.disabled = false;
-    buttonElement.classList.remove(selectors.inactiveButtonClass);
-  }
+function enableSubmitButton(buttonElement, inactiveButtonClass) {
+  buttonElement.disabled = false;
+  buttonElement.classList.remove(inactiveButtonClass);
 }
 
-//В этой процедуре проходит единоразовая проверка полей, она нужна при открытии попапа для первой проверки и установки статуса кнопки субмита
-function ValidateForm(selectors, formElement) {
-  const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
-  const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
-  inputList.forEach((inputElement) => {
-    checkInputValidity(selectors, formElement, inputElement);
-  });
-  toggleButtonState(selectors, inputList, buttonElement);
+function disableSubmitButton(buttonElement, inactiveButtonClass) {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(inactiveButtonClass);
+}
+
+function toggleButtonState(inactiveButtonClass, inputList, buttonElement) {
+  if (hasInvalidInput(inputList)) {
+    disableSubmitButton(buttonElement, inactiveButtonClass);
+  } else {
+    enableSubmitButton(buttonElement, inactiveButtonClass);
+  }
 }
 
 //В этой процедуре мы только вешаем обработчики на поля ввода и больше ничего! ибо открытых попапов нет!!!
@@ -53,7 +61,7 @@ function setEventListeners(selectors, formElement) {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(selectors, formElement, inputElement);
-      toggleButtonState(selectors, inputList, buttonElement);
+      toggleButtonState(selectors.inactiveButtonClass, inputList, buttonElement);
     });
   });
 }
