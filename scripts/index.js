@@ -23,6 +23,9 @@ const popupViewForm = document.querySelector('.popup_view-card');
 const popupViewImage = document.querySelector('.popup__image');
 const popupViewDesc = document.querySelector('.popup__photo-caption');
 
+const allContext = document.querySelector('.content');  //только этот элемент отрабатывает нажатие keydown всегда, а не только при фокусе в inpute
+
+
 const selectors = {
   // formSelector: '.popup__form',
   inputSelector: '.popup__edit-field',
@@ -34,14 +37,16 @@ const selectors = {
 
 function openFormDialog(dialog) {
   dialog.classList.add('popup_opened');
-  dialog.addEventListener('keydown', closePopupForEsc);
   dialog.addEventListener('mousedown', clickPopupElements);
+  //dialog.addEventListener('keydown', closePopupForEsc, true);
+  allContext.addEventListener('keydown', closePopupForEsc);
 }
 
 function closeFormDialog(dialog) {
   dialog.classList.remove('popup_opened');
-  dialog.removeEventListener('keydown', closePopupForEsc);
   dialog.removeEventListener('mousedown', clickPopupElements);
+  //dialog.removeEventListener('keydown', closePopupForEsc, true);
+  allContext.removeEventListener('keydown', closePopupForEsc);
 }
 
 function openViewImage(name, src) {
@@ -87,7 +92,12 @@ function clickPopupElements (evt) {
 
 function closePopupForEsc (evt) {
   if (evt.key === 'Escape') {
-    closeFormDialog(evt.target.closest('.popup'));
+    //проверим есть ли открытая форма
+    const openForm = document.querySelector('.popup_opened');
+    if (openForm) {
+      closeFormDialog(openForm);
+    }
+    // closeFormDialog(evt.target.closest('.popup'));
   }
 }
 
