@@ -19,7 +19,7 @@
 .popup__save-button:hover {
   opacity: .6;
   cursor: pointer;
-  box-shadow: #000 0 0 8px ;
+  box-shadow: #000 0 0 8px;
   transition: opacity .25s ease-in;
   transition: box-shadow .25s ease-in;
 }
