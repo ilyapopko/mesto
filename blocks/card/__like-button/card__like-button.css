@@ -1,4 +1,4 @@
-.card__likes {
+.card__like-button {
   min-width: 22px;
   min-height: 19px;
   background-image: url("./../../../images/heart.svg");
@@ -9,8 +9,11 @@
   border: none;
   box-sizing: border-box;
   cursor: pointer;
+  margin-right: 5px;
+  transition: opacity .6s linear;
 }
 
-.card__likes:hover {
+.card__like-button:hover {
   opacity: 50%;
+  transition: background-image .6s linear;
 }

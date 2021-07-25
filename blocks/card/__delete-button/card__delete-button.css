@@ -9,8 +9,13 @@
   background-image: url("./../../../images/deleteCard.svg");
   background-size: cover;
   border: none;
+  transition: opacity .25s ease-in;
+
 }
 
 .card__delete-button:hover {
   opacity: 60%;
+  transition: opacity .25s ease-in;
+
+
 }

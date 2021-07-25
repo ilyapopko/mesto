@@ -7,28 +7,25 @@
   <link rel="stylesheet" href="./pages/index.css" />
   <title>Место</title>
 </head>
-<body class="content">
-  <div class="page">
+<body class="page">
+  <div class="page__container">
+
     <header class="header">
       <a href="#" class="header__logo" aria-label="Логотип" target="_blank"></a>
     </header>
+
     <main>
+
       <section class="profile">
-        <div class="profile__info">
-          <img src="./images/avatar.jpg" alt="Аватарка" class="profile__avatar">
-          <div class="profile__description">
-            <div class="profile__author">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <p class="profile__specialization">Исследователь океана</p>
-            </div>
-            <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
-          </div>
-        </div>
+        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватарка">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
+        <p class="profile__specialization">Исследователь океана</p>
         <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
       </section>
-      <section class="cards">
-    </section>
 
+      <section class="cards">
+      </section>
 
     <article class="popup popup_edit-profile">
       <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile" novalidate>
@@ -67,6 +64,7 @@
     </div>
 
     </main>
+
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Место Россия</p>
     </footer>
@@ -75,16 +73,14 @@
       <article class="card">
         <img src="#" alt="Фотография" class="card__image">
         <button class="card__delete-button" type="button" aria-label="Удалить карточку"></button>
-        <div class="card__places">
-          <h2 class="card__place"></h2>
-          <button class="card__likes" type="button" aria-label="Лайкнуть"></button>
+        <div class="card__description">
+          <h2 class="card__caption"></h2>
+          <button class="card__like-button" type="button" aria-label="Лайкнуть"></button>
         </div>
       </article>
     </template>
 
   </div>
-  <script src="./scripts/test_data.js"></script>
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 .card__image {
   width: 282px;
-  min-height: 282px;
-  max-height: 282px;
-  /* object-fit: cover; */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  height: 282px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+.card__image:hover {
   cursor: pointer;
 }
