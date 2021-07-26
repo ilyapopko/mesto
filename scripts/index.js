@@ -77,6 +77,7 @@ const openViewImage = function(card) {
   popupViewImage.src = card.getImage();
   popupViewImage.alt = "Фотография " + card.getName();
   popupViewDesc.textContent = card.getName();
+  selectors.formSelector = '';
   openFormDialog(popupViewCard);
 }
 
