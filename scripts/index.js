@@ -1,7 +1,7 @@
 
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import {initialCards} from './constants.js';
+import initialCards from './constants.js';
 
 //Элементы на главной странице
 // const cardTemplate = document.querySelector('#card-template').content;
@@ -35,22 +35,25 @@ const selectors = {
   errorClass: 'popup__input-error_visible'
 };
 
-//Глобальная функция открытия диалогового окна
-function openFormDialog(dialog) {
-  dialog.classList.add('popup_opened');
-  dialog.addEventListener('mousedown', clickPopupElements);
-  document.addEventListener('keydown', closePopupForEsc);
+function initializationValidation(formSelector, dialog) {
+  selectors.formSelector = formSelector;
+  const formValidator = new FormValidator(selectors, dialog);
+  formValidator.enableValidation();
+  return formValidator;
+}
 
-  if (selectors.formSelector === '.popup_edit-profile' || selectors.formSelector === '.popup_add-card') {
-    const formValidator = new FormValidator(selectors, dialog);
-    formValidator.enableValidation();
+//Глобальная функция открытия диалогового окна
+function openFormDialog(dialog, validator = undefined) {
+  dialog.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupForEsc);
+  if (validator) {
+    validator.clearError();
   }
 }
 
 //*Глобальная функция закрытия диалогового окна
 function closeFormDialog(dialog) {
   dialog.classList.remove('popup_opened');
-  dialog.removeEventListener('mousedown', clickPopupElements);
   document.removeEventListener('keydown', closePopupForEsc);
 }
 
@@ -73,28 +76,46 @@ function closePopupForEsc (evt) {
 }
 
 //*Функция открытия окна просмотра
-const openViewImage = function(card) {
-  popupViewImage.src = card.getImage();
-  popupViewImage.alt = "Фотография " + card.getName();
-  popupViewDesc.textContent = card.getName();
-  selectors.formSelector = '';
+const openViewImage = function(name, src) {
+  popupViewImage.src = src;
+  popupViewImage.alt = "Фотография " + name;
+  popupViewDesc.textContent = name;
   openFormDialog(popupViewCard);
 }
 
+//*Функция создания карточки
+function createCard(name, src) {
+  const element = new Card(name, src, '#card-template', openViewImage);
+  return element.generateCard();
+}
+
 //*Функция добавления карточки в список
-function addCardIntoContainer(name, src) {
-  const element = new Card(name, src, '#card-template', openViewImage)
-  cardsContainer.prepend(element.generateCard());
+function addCardIntoContainer(element) {
+  cardsContainer.prepend(element);
 }
 
 //*Глобальные функции главного окна
+
+//* Начальная инициализация
+initialCards.reverse();
+initialCards.forEach(function (item) {
+  addCardIntoContainer(createCard(item.name, item.link));
+});
+
+//* Инициализация валидации
+const validatorProfile = initializationValidation('.popup_edit-profile', popupProfileForm);
+const validatorCard = initializationValidation('.popup_add-card', popupAddCard);
+
+//* Обработчики закрытия по оверлею
+popupProfileForm.addEventListener('mousedown', clickPopupElements);
+popupAddCard.addEventListener('mousedown', clickPopupElements);
+popupViewCard.addEventListener('mousedown', clickPopupElements);
 
 //*Обработчик клика на кнопке редактирования профиля
 editProfileButton.addEventListener('click', () => {
   inputNameAuthor.value = profileNameAuthor.textContent;
   inputSpecialization.value = profileSpecialization.textContent;
-  selectors.formSelector = '.popup_edit-profile';
-  openFormDialog(popupProfileForm);
+  openFormDialog(popupProfileForm, validatorProfile);
 });
 
 //*Обработчик изменения профиля (сохранение с закрытием диалоговой формы)
@@ -108,50 +129,13 @@ formProfile.addEventListener('submit', (evt) => {
 //*Обработчик клика на кнопке добавления карточки
 addCardButton.addEventListener('click', () => {
   formAddCard.reset();
-  selectors.formSelector = '.popup_add-card';
-  openFormDialog(popupAddCard);
+  openFormDialog(popupAddCard, validatorCard);
 });
 
 //*Обработчик добавления карточки в список (сохранение с закрытием диалоговой формы)
 formAddCard.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  addCardIntoContainer(inputCardName.value, inputCardLink.value);
+  addCardIntoContainer(createCard(inputCardName.value, inputCardLink.value));
   closeFormDialog(popupAddCard);
 });
-
-//этот код был вверху чтобы не мешаться "по ногами" - ибо его все равно удалять через несколько итераций
-initialCards.reverse();
-initialCards.forEach(function (item) {
-  addCardIntoContainer(item.name, item.link);
-});
-
-
-//Старые функции для справки
-
-//*Функция создания карточки
-// function createCard(name, src) {
-//   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-//   const linkImage = cardElement.querySelector('.card__image');
-//   const deleteButton = cardElement.querySelector('.card__delete-button');
-//   const likeButton = cardElement.querySelector('.card__like-button');
-//   const placeCaption = cardElement.querySelector('.card__caption');
-//   linkImage.src = src;
-//   linkImage.alt = 'Фотография ' + name;
-//   placeCaption.textContent = name;
-//   linkImage.addEventListener('click', () => openViewImage(name, src));
-//   deleteButton.addEventListener('click', deleteCard);
-//   likeButton.addEventListener('click', toggleFlagLike);
-//   return cardElement;
-// }
-
-//*Функция удаления карточки из списка
-// function deleteCard(evt) {
-//   const element = evt.target.closest('.card');
-//   element.remove();
-// }
-
-// //*Функция обработки лайка на карточке
-// function toggleFlagLike(evt) {
-//   evt.target.classList.toggle('card__like-button_active');
-// }
 

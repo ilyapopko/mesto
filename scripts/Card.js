@@ -12,7 +12,7 @@ export default class Card {
 
   _setEventListeners() {
     this._elementImage.addEventListener('click', () => {
-      this._handlerViewImage(this);
+      this._handlerViewImage(this._name, this._image);
     });
     this._elementLikeButton.addEventListener('click', () => {
       this._toggleFlagLike();
@@ -49,14 +49,6 @@ export default class Card {
     this._setEventListeners();
 
     return this._element;
-  }
-
-  getName() {
-    return this._name;
-  }
-
-  getImage() {
-    return this._image;
   }
 }
 
