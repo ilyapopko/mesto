@@ -7,7 +7,7 @@ export default class FormValidator {
     this._errorClass = selectors.errorClass;
     this._formElement = formElement;
     this._buttonElement = formElement.querySelector(this._submitButtonSelector);
-    this._inputList = Array.from(this._element.querySelectorAll(this._inputSelector));
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
 
   _hasInvalidInput(inputList) {
