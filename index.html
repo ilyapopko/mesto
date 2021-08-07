@@ -31,9 +31,9 @@
       <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile" novalidate>
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__container-info">
-          <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="authorName" minlength="2" maxlength="40" required>
+          <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="user" minlength="2" maxlength="40" required>
           <span id="author-name-error" class="popup__input-error"></span>
-          <input type="text" class="popup__edit-field" id="author-specialization" placeholder="О себе" name="authorSpecialization" minlength="2" maxlength="200" required>
+          <input type="text" class="popup__edit-field" id="author-specialization" placeholder="О себе" name="specialization" minlength="2" maxlength="200" required>
           <span id="author-specialization-error" class="popup__input-error"></span>
           <button class="popup__save-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
         </fieldset>
@@ -45,9 +45,9 @@
       <form action="#" class="popup__container" name="formAddCard" id="formAddCard" novalidate>
         <h2 class="popup__heading">Новое место</h2>
         <fieldset class="popup__container-info">
-          <input type="text" class="popup__edit-field" id="place-name" placeholder="Название" name="placeName" minlength="2" maxlength="30" required>
+          <input type="text" class="popup__edit-field" id="place-name" placeholder="Название" name="name" minlength="2" maxlength="30" required>
           <span id="place-name-error" class="popup__input-error"></span>
-          <input type="url" class="popup__edit-field" id="place-link" placeholder="Ссылка на картинку" name="placeLink" required>
+          <input type="url" class="popup__edit-field" id="place-link" placeholder="Ссылка на картинку" name="link" required>
           <span id="place-link-error" class="popup__input-error"></span>
           <button class="popup__save-button" type="submit" aria-label="Добавить карточку">Создать</button>
         </fieldset>
