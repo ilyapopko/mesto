@@ -1,10 +1,11 @@
 export default class Popup {
   _dialog
-  _resetButton
+  _closeButton
 
   constructor(selector) {
     this._dialog = document.querySelector(selector);
-    this._resetButton = this._dialog.querySelector('.popup__reset-button');
+    this._closeButton = this._dialog.querySelector('.popup__reset-button');
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   _handleEscClose(evt) {
@@ -16,14 +17,14 @@ export default class Popup {
   setEventListeners() {
     this._dialog.addEventListener('mousedown', (evt) => {
       const currentElement = evt.target;
-      if (currentElement === this._dialog || currentElement === this._resetButton) {
+      if (currentElement === this._dialog || currentElement === this._closeButton) {
         this.close();
       }
     });
   }
 
   open() {
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
+    document.addEventListener('keydown', this._handleEscClose);
     this._dialog.classList.add('popup_opened');
   }
 

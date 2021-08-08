@@ -9,9 +9,9 @@ export default class Card {
   _elementLikeButton
   _elementDeleteButton
 
-  constructor(name, src, templateSelector, handleCardClick) {
-    this._name = name;
-    this._image = src;
+  constructor(data, templateSelector, handleCardClick) {
+    this._name = data.name;
+    this._image = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }

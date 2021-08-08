@@ -13,7 +13,7 @@ export default class PopupWithForm extends Popup {
     this._inputList = Array.from(this._form.querySelectorAll('.popup__edit-field'));
     this._validator = validator;
     this._validator.enableValidation();
-    }
+  }
 
   _getInputValues() {
     const result = {};
@@ -29,11 +29,10 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._handleSubmitForm(this._getInputValues());
-      this.close();
     });
   }
 
-  open(data = undefined) {
+  open(data) {
     if (data) {
       const keys = Object.keys(data);
       const dataField = this._inputList.filter( input => {

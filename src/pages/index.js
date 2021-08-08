@@ -1,16 +1,16 @@
-import './../pages/index.css';
+import './index.css';
 
-import Section from "./Section.js";
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-import {initialCards, editProfileButton, selectors, addCardButton} from './constants.js';
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import {initialCards, editProfileButton, selectors, addCardButton} from '../utils/constants.js';
 
-//* Осталась единственная вспомогательная функция для не дублирования кода генерации карточки при создании
+//* Вспомогательная функция для не дублирования кода генерации карточки при создании
 function createCard(data) {
-  const element = new Card(data.name, data.link, '#card-template', (name, src)=>{
+  const element = new Card(data, '#card-template', (name, src)=>{
     popupViewCard.open(name, src);
   });
   return element.generateCard();
@@ -26,6 +26,7 @@ popupViewCard.setEventListeners();
 //* Окошко редактирования профиля пользователя со своим валидатором
 const popupEditProfile = new PopupWithForm('.popup_edit-profile',(data) => {
   userInfo.setUserInfo(data.user, data.specialization);
+  popupEditProfile.close();
 }, new FormValidator('.popup_edit-profile', selectors));
 popupEditProfile.setEventListeners();
 
@@ -36,7 +37,8 @@ editProfileButton.addEventListener('click', () => {
 
 //* Окошко добавления карточки со своим валидатором
 const popupAddCard = new PopupWithForm('.popup_add-card', (data)=>{
-  cardsContainer.addItem(createCard(data));
+  cardsContainer.prependItem(createCard(data));
+  popupAddCard.close();
 }, new FormValidator('.popup_add-card', selectors));
 popupAddCard.setEventListeners();
 
@@ -46,9 +48,9 @@ addCardButton.addEventListener('click', () => {
 });
 
 //* Объект списка карточек
-const cardsContainer = new Section({items: initialCards.reverse(), renderer: (item) => {
-  cardsContainer.addItem(createCard(item));
+const cardsContainer = new Section({items: initialCards, renderer: (item) => {
+  cardsContainer.appendItem(createCard(item));
 }},'.cards');
 
 //* Инициализация начального списка карточек
-cardsContainer.render();
+cardsContainer.render(initialCards);
