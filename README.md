@@ -22,4 +22,4 @@
 * Скрипты перенесены на модульный принцип подключения
 * Добавлена анимация динамических элементов
 ## Страница на GitHub Pages:
-* [Ссылка на страницу](https://ilyapopko.github.io/mesto/index.html)
+* [Ссылка на страницу](https://ilyapopko.github.io/mesto)
