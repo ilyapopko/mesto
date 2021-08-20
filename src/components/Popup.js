@@ -4,7 +4,7 @@ export default class Popup {
 
   constructor(selector) {
     this._dialog = document.querySelector(selector);
-    this._closeButton = this._dialog.querySelector('.popup__reset-button');
+    this._closeButton = this._dialog.querySelector('.popup__close-button');
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 

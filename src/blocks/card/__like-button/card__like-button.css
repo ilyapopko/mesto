@@ -9,11 +9,11 @@
   border: none;
   box-sizing: border-box;
   cursor: pointer;
-  margin-right: 5px;
-  transition: opacity .6s linear;
+  margin-bottom: 3px;
+  transition: opacity .4s linear;
 }
 
 .card__like-button:hover {
   opacity: 50%;
-  transition: background-image .6s linear;
+  transition: background-image .4s linear;
 }

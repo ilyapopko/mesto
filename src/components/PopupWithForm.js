@@ -11,6 +11,7 @@ export default class PopupWithForm extends Popup {
     this._handleSubmitForm = handleSubmitForm;
     this._form = this._dialog.querySelector('.popup__container');
     this._inputList = Array.from(this._form.querySelectorAll('.popup__edit-field'));
+    this._buttonSubmit = this._dialog.querySelector('.popup__save-button');
     this._validator = validator;
     this._validator.enableValidation();
   }
@@ -49,5 +50,13 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  showLoadingProcess() {
+    this._buttonSubmit.textContent = "Сохранение...";
+  }
+  
+  hideLoadingProcess() {
+    this._buttonSubmit.textContent = "Сохранить";
   }
 }

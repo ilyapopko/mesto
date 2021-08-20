@@ -1,4 +1,4 @@
-.popup__reset-button {
+.popup__close-button {
   position: absolute;
   background-image: url("./../../../images/closeIcon.svg");
   background-color: transparent;
@@ -15,14 +15,14 @@
   transition: opacity .25s ease-in;
 }
 
-.popup__reset-button:hover {
+.popup__close-button:hover {
   opacity: .6;
   cursor: pointer;
   transition: opacity .25s ease-in;
 }
 
 @media screen and (min-width: 618px) {
-  .popup__reset-button {
+  .popup__close-button {
     width: 57px;
     height: 57px;
     left: calc(100% - 10px);
