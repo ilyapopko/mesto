@@ -36,7 +36,7 @@ export default class Api {
       return this._processingResult(result);
     });
   }
-  
+
   updateUserProperties(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
@@ -82,11 +82,7 @@ export default class Api {
   }
 
   setLikeCard(isLiked, id) {
-    let metodHtml = 'PUT';
-    if (isLiked) {
-      metodHtml = 'DELETE';
-    }
-
+    const metodHtml = isLiked ? 'DELETE' : 'PUT';
     return fetch(`${this._url}/cards/likes/${id}`, {
       method: metodHtml,
       headers: this._headers,

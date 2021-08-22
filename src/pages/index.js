@@ -34,13 +34,11 @@ function handleSubmitEditProfile(inputData) {
   apiServer.updateUserProperties(inputData)
     .then(returnedData => {
       userInfo.setUserInfo(returnedData);
+      popupEditProfile.hideLoadingProcess();
+      popupEditProfile.close();
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      popupEditProfile.hideLoadingProcess();
-      popupEditProfile.close();
     });
   }
 
@@ -55,14 +53,12 @@ function handleSubmitEditAvatar({avatar}) {
   apiServer.updateUserAvatar(avatar)
     .then(returnedData => {
       userInfo.setUserInfo(returnedData);
-      currentUserId = userInfo.getUserInfo().id;
+      currentUserId = returnedData._id;
+      popupEditAvatar.hideLoadingProcess();
+      popupEditAvatar.close();
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      popupEditAvatar.hideLoadingProcess();
-      popupEditAvatar.close();
     });
   }
 
@@ -89,9 +85,6 @@ function handleConfirmDeleteCard(card) {
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      popupDeleteCard.close();
     });
 }
 
@@ -130,13 +123,11 @@ function handleSubmitAddCard(inputData) {
   apiServer.addCard(inputData)
     .then((returnedData) => {
       cardsContainer.prependItem(renderedCard(returnedData, currentUserId));
+      popupAddCard.close();
+      popupAddCard.hideLoadingProcess();
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      popupAddCard.hideLoadingProcess();
-      popupAddCard.close();
     });
 }
 
@@ -156,12 +147,12 @@ const cardsContainer = new Section('.cards', (item) => {
 
 //*Получение данных с сервера и заполнение полей
 Promise.all([apiServer.getUserProperties(), apiServer.getAllCards()])
-  .then((promises) => {
-    userInfo.setUserInfo(promises[0]);
-    currentUserId = userInfo.getUserInfo().id;
+  .then(([dataUserInfo, dataInitialCard]) => {
+    userInfo.setUserInfo(dataUserInfo);
+    currentUserId = dataUserInfo._id;
     //Вывод всех карточек
     if (currentUserId) {
-      cardsContainer.render(promises[1]);
+      cardsContainer.render(dataInitialCard);
     }
 })
 .catch(err => {
