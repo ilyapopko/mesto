@@ -1,8 +1,8 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "Проектная работа №8",
-  "main": "main.js",
+  "description": "Проектная работа №8/9",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
