@@ -43,6 +43,7 @@ export default class PopupWithForm extends Popup {
         input.value = data[input.name];
       });
     }
+    console.log(this.element);
     this._validator.clearErrors();
     super.open();
   }
@@ -55,7 +56,7 @@ export default class PopupWithForm extends Popup {
   showLoadingProcess() {
     this._buttonSubmit.textContent = "Сохранение...";
   }
-  
+
   hideLoadingProcess() {
     this._buttonSubmit.textContent = "Сохранить";
   }

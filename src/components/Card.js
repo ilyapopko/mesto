@@ -7,6 +7,8 @@ export default class Card {
   _likes
   _templateSelector
   _handleCardClick
+  _handleDeleteClick
+  _handleLikeClick
   _element
   _elementName
   _elementImage
@@ -27,7 +29,6 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick.bind(this);
     this._handleLikeClick = handleLikeClick.bind(this);
-
   }
 
   _getTemplate() {
@@ -44,6 +45,7 @@ export default class Card {
     this._elementDeleteButton.addEventListener('click', () => {
       this._handleDeleteClick();
     });
+
   }
 
   _setLikeFlag(flag) {
@@ -55,6 +57,14 @@ export default class Card {
   }
   getIdCard() {
     return this._id;
+  }
+  getCardInfo() {
+    return {id: this._id, name: this._name, link: this._link, element: this};
+  }
+
+  setCardInfo(name, link) {
+    this._name = name;
+    this.link = link;
   }
 
   isLiked() {
@@ -68,7 +78,7 @@ export default class Card {
     }
     this._setLikeFlag(this.isLiked());
     this._elementLikesCount.textContent = this._likes.length;
-
+    this._elementLikeButton.title = this._likes.length > 0 ? 'Отметили: ' + this._likes.map(item => item.name).join('; ') : 'Еще никто не отметил';
   }
 
   delete() {
@@ -89,6 +99,7 @@ export default class Card {
     this._elementName.textContent = this._name;
     this._elementImage.src = this._link;
     this._elementImage.alt = 'Фотография ' + this._name;
+
 
     //Установим наличие лайка юзера
     this.setLikes();

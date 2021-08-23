@@ -7,9 +7,14 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+import PopupWithLoading from '../components/PopupWithLoading.js';
 
 import UserInfo from "../components/UserInfo.js";
 import {editProfileButton, addCardButton, editAvatarButton, selectors} from '../utils/constants.js';
+
+//* Инициализация Лоадера начальной загрузки
+const popupLoader = new PopupWithLoading('.popup_loader-screen');
+popupLoader.open();
 
 //* Инициализация объекта с функционалом запросов
 const apiServer = new Api({
@@ -121,14 +126,14 @@ function renderedCard(data, currentUserId) {
 function handleSubmitAddCard(inputData) {
   popupAddCard.showLoadingProcess();
   apiServer.addCard(inputData)
-    .then((returnedData) => {
-      cardsContainer.prependItem(renderedCard(returnedData, currentUserId));
-      popupAddCard.close();
-      popupAddCard.hideLoadingProcess();
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  .then((returnedData) => {
+    cardsContainer.prependItem(renderedCard(returnedData, currentUserId));
+    popupAddCard.close();
+    popupAddCard.hideLoadingProcess();
+  })
+  .catch(err => {
+    console.log(err);
+  });
 }
 
 //* Окошко добавления карточки со своим валидатором
@@ -154,8 +159,11 @@ Promise.all([apiServer.getUserProperties(), apiServer.getAllCards()])
     if (currentUserId) {
       cardsContainer.render(dataInitialCard);
     }
-})
+  })
 .catch(err => {
   console.log(err);
+})
+.finally(() => {
+  popupLoader.close();
 });
 
