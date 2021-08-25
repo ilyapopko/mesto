@@ -16,7 +16,8 @@ module.exports = {
     contentBase: path.resolve(__dirname, './dist'),
     compress: true,
     port: 8080,
-    open: true
+    open: "Chrome"
+
   },
   module: {
     rules: [
@@ -51,7 +52,7 @@ module.exports = {
       ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html'
+    template: path.resolve(__dirname,'src', 'index.html')
   }),
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin()

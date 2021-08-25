@@ -99,6 +99,7 @@ export default class Card {
     this._elementName.textContent = this._name;
     this._elementImage.src = this._link;
     this._elementImage.alt = 'Фотография ' + this._name;
+    this._element.title = 'Добавил (автор): ' + this._owner.name;
 
 
     //Установим наличие лайка юзера
