@@ -29,7 +29,6 @@
 
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/_loader-screen/popup_loader-screen.css");
-@import url("../blocks/popup/__accent-loader/popup__accent-loader.css");
 
 @import url("../blocks/popup/__loader/popup__loader.css");
 @import url("../blocks/popup/_smooth-control/popup_smooth-control.css");

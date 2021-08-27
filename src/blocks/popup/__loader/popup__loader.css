@@ -30,10 +30,10 @@
   border-top:3px solid #fff;
   border-right:3px solid #fff;
   border-radius:50%;
-  animation:animateCircle 2s linear infinite;
+  animation:animate 2s linear infinite;
 }
 
-@keyframes animateCircle
+@keyframes animate
 {
   0%
   {

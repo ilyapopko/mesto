@@ -164,6 +164,6 @@ Promise.all([apiServer.getUserProperties(), apiServer.getAllCards()])
   console.log(err);
 })
 .finally(() => {
-  popupLoader.close();
+  //popupLoader.close();
 });
 
