@@ -1,16 +1,18 @@
-import Popup from "./Popup.js";
-
-export default class PopupWithLoading extends Popup {
-
+export default class PopupWithLoading {
+  _dialog
+  _loaderElement
+  
   constructor(selector) {
-    super(selector);
+    this._dialog = document.querySelector(selector);
+    this._loaderElement = this._dialog.querySelector('.popup__loader');
   }
 
-  open() {
+  show() {
     this._dialog.classList.add('popup_opened');
   }
 
-  close() {
+  hide() {
     this._dialog.classList.remove('popup_opened');
   }
+
 }

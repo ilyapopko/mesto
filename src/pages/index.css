@@ -23,6 +23,9 @@
 @import url("../blocks/card/__like-container/card__like-container.css");
 @import url("../blocks/card/__like-button/_active/card__like-button_active.css");
 @import url("../blocks/card/__like-count/card__like-count.css");
+@import url("../blocks/card/__author/card__author.css");
+@import url("../blocks/card/__like-loader/card__like-loader.css");
+@import url("../blocks/card/__like-loader/_opened/card__like-loader_opened.css");
 
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
@@ -31,6 +34,7 @@
 @import url("../blocks/popup/_loader-screen/popup_loader-screen.css");
 
 @import url("../blocks/popup/__loader/popup__loader.css");
+
 @import url("../blocks/popup/_smooth-control/popup_smooth-control.css");
 @import url("../blocks/popup/_view-card/popup_view-card.css");
 @import url("../blocks/popup/_opened/popup_opened.css");
@@ -48,6 +52,23 @@
 @import url("../blocks/popup/__input-error/popup__input-error.css");
 @import url("../blocks/popup/__input-error/_visible/popup__input-error_visible.css");
 @import url("../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css");
+
+@import url("../blocks/tool-tip/tool-tip.css");
+@import url("../blocks/tool-tip/_likes/tool-tip_likes.css");
+@import url("../blocks/tool-tip-wrapper/tool-tip-wrapper.css");
+@import url("../blocks/tool-tip/_error/tool-tip_error.css");
+
+@import url("../blocks/tool-tip/_opened/tool-tip_opened.css");
+
+@import url("../blocks/tool-tip/__header/tool-tip__header.css");
+@import url("../blocks/tool-tip/__header/_error/tool-tip__header_error.css");
+@import url("../blocks/tool-tip/__users/tool-tip__users.css");
+@import url("../blocks/tool-tip/__user/tool-tip__user.css");
+@import url("../blocks/tool-tip/__user-avatar/tool-tip__user-avatar.css");
+@import url("../blocks/tool-tip/__user-name/tool-tip__user-name.css");
+@import url("../blocks/tool-tip/__container/tool-tip__container.css");
+@import url("../blocks/tool-tip/__icon/tool-tip__icon.css");
+@import url("../blocks/tool-tip/__caption/tool-tip__caption.css");
 
 
 

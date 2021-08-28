@@ -1,0 +1,9 @@
+.card__author {
+  color: gray;
+  font-size: 12px;
+  font-weight: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 3px 20px 10px;
+}

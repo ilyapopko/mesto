@@ -2,7 +2,7 @@ export default class Section {
   _containerItem
   // _items
   _renderer
-
+  cardsList
   // constructor ({items, renderer}, selector) {
   //   this._containerItem = document.querySelector(selector);
   //   //this._items = items;  //данный параметр конструктора описан в задании, его удалять пока нельзя, хотя идея с передачей параметром в функцию и на мой взгляд лучше.
@@ -12,6 +12,7 @@ export default class Section {
   constructor (selector, renderer) {
     this._containerItem = document.querySelector(selector);
     this._renderer = renderer;
+    this.cardsList = [];
     // this._currentId = currentId;
   }
   render(items) {
@@ -26,6 +27,13 @@ export default class Section {
 
   prependItem(domElement) {
     this._containerItem.prepend(domElement);
+  }
+
+  removeCardFromList(el) {
+    const currentIndex = this.cardsList.indexOf(el);
+    if (currentIndex !== -1) {
+      Array.from(this.cardsList).splice(currentIndex, 1);
+    }
   }
 
 }

@@ -43,7 +43,6 @@ export default class PopupWithForm extends Popup {
         input.value = data[input.name];
       });
     }
-    console.log(this.element);
     this._validator.clearErrors();
     super.open();
   }

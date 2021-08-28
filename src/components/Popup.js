@@ -16,8 +16,7 @@ export default class Popup {
 
   setEventListeners() {
     this._dialog.addEventListener('mousedown', (evt) => {
-      const currentElement = evt.target;
-      if (currentElement === this._dialog || currentElement === this._closeButton) {
+      if (evt.target === this._dialog || evt.target === this._closeButton) {
         this.close();
       }
     });
