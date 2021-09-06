@@ -10,8 +10,9 @@ import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from "../components/UserInfo.js";
 import {editProfileButton, addCardButton, editAvatarButton, selectors} from '../utils/constants.js';
 
+import PopupWithError from '../components/PopupWithError.js';
+
 //TODO: Переделать
-// import ToolTipWithError from '../components/ToolTipWithError.js';
 // import PopupWithLoading from '../components/PopupWithLoading.js';
 // import ToolTipWithLikes from '../components/ToolTipWithLikes.js';
 
@@ -22,8 +23,9 @@ import {editProfileButton, addCardButton, editAvatarButton, selectors} from '../
 // const popupLoader = new PopupWithLoading('.popup_loader-screen');
 // popupLoader.show();
 
-// const errorPopup = new ToolTipWithError('#tool_tip_error');
 
+//* Инициализация окна с ошибкой
+const errorPopup = new PopupWithError('.popup_type_error');
 
 
 //* Инициализация объекта с функционалом запросов
@@ -57,8 +59,7 @@ function handleSubmitEditProfile(inputData) {
       popupEditProfile.hide();
     })
     .catch(err => {
-      //TODO: Переделать
-      // errorPopup.show(err);
+      errorPopup.show(err);
     });
   }
 
@@ -78,8 +79,7 @@ function handleSubmitEditAvatar({avatar}) {
       popupEditAvatar.hide();
     })
     .catch(err => {
-      //TODO: Переделать
-      // errorPopup.show(err);
+      errorPopup.show(err);
     });
   }
 
@@ -111,8 +111,7 @@ function handleConfirmDeleteCard(card) {
       popupDeleteCard.hideLoadingProcess();
     })
     .catch(err => {
-      //TODO: Переделать
-      // errorPopup.show(err);
+      errorPopup.show(err);
     });
 }
 
@@ -143,8 +142,7 @@ function handleLikeClick (evt) {
     // toolTipLikes.show(evt, this.getLikes(), currentUserId);
   })
   .catch((err) => {
-    //TODO: Переделать
-    // errorPopup.show(err);
+    errorPopup.show(err);
   });
 }
 
@@ -178,8 +176,7 @@ function handleSubmitAddCard(inputData) {
     popupAddCard.hideLoadingProcess();
   })
   .catch(err => {
-    //TODO: Переделать
-    // errorPopup.show(err);
+    errorPopup.show(err);
   });
 }
 
@@ -210,8 +207,7 @@ Promise.all([apiServer.getUserProperties(), apiServer.getAllCards()])
     }
   })
   .catch(err => {
-    //TODO: Переделать
-    // errorPopup.show(err);
+    errorPopup.show(err);
   })
   .finally(() => {
     //TODO: Переделать

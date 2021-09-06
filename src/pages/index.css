@@ -36,6 +36,7 @@
 
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/_type_user/popup_type_user.css");
+@import url("../blocks/popup/_type_error/popup_type_error.css");
 
 /*Удалить*/
 /* @import url("../blocks/popup/_loader-screen/popup_loader-screen.css"); */
@@ -59,6 +60,12 @@
 @import url("../blocks/popup/__input-error/popup__input-error.css");
 @import url("../blocks/popup/__input-error/_visible/popup__input-error_visible.css");
 @import url("../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css");
+
+@import url("../blocks/popup/__error-container/popup__error-container.css");
+@import url("../blocks/popup/__error/popup__error.css");
+@import url("../blocks/popup/__error-header/popup__error-header.css");
+@import url("../blocks/popup/__error-icon/popup__error-icon.css");
+@import url("../blocks/popup/__error-caption/popup__error-caption.css");
 
 /*Удалить*/
 /* @import url("../blocks/tool-tip/tool-tip.css"); */
