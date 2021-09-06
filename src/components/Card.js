@@ -18,8 +18,6 @@ export default class Card {
   _elementLikesCount
   _elementAuthor
 
-  //TODO: Удалить????
-  _elementLikeLoader
 
   constructor(data, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, currentUserId) {
     this._name = data.name;
@@ -67,17 +65,8 @@ export default class Card {
     }
   }
 
-  //TODO:Переписать, удалить
-  getIdCard() {
-    return this._id;
-  }
-
   getCardInfo() {
     return {id: this._id, name: this._name, link: this._link, element: this};
-  }
-
-  getLikes() {
-    return this._likes;
   }
 
   setCardInfo(name, link) {
@@ -85,9 +74,8 @@ export default class Card {
     this.link = link;
   }
 
-  isLiked() {
-    return this._likes.some((likeUser) => {
-      return this._currentUserId === likeUser._id});
+  getLikes() {
+    return this._likes;
   }
 
   setLikes(dataLikes) {
@@ -98,13 +86,18 @@ export default class Card {
     this._elementLikesCount.textContent = this._likes.length;
   }
 
+  isLiked() {
+    return this._likes.some((likeUser) => {
+      return this._currentUserId === likeUser._id});
+  }
+
+
   delete() {
     this._element.remove();
     this._element = null;
   }
 
   generateCard() {
-
     this._element = this._getTemplate();
     this._elementName = this._element.querySelector('.card__caption');
     this._elementImage = this._element.querySelector('.card__image');
@@ -112,7 +105,6 @@ export default class Card {
     this._elementDeleteButton = this._element.querySelector('.card__delete-button');
     this._elementLikesCount = this._element.querySelector('.card__like-count');
     this._elementAuthor = this._element.querySelector('.card__author');
-    this._elementLikeLoader = this._element.querySelector('.card__like-loader');
     //Заполним значения полей
     this._elementName.textContent = this._name;
     this._elementImage.src = this._link;
@@ -129,20 +121,11 @@ export default class Card {
 
     //Установим обработчики событий
     this._setEventListeners();
-
     return this._element;
   }
 
-  // showLoader() {
-  //   this._elementLikeLoader.classList.add('card__like-loader_opened');
-  // }
-
-  // hideLoader() {
-  //   this._elementLikeLoader.classList.remove('card__like-loader_opened');
-  // }
-
-  //TODO:Переписать
-  updateCardInfo({name, id}) {      //////////////////!!!!!!!!!!!! TODO: Переписать
+  //TODO: Переписать правильно
+  updateCardInfo({name, id}) {
     if (this._owner._id !== id) {
       return;
     }

@@ -38,6 +38,9 @@
 @import url("../blocks/popup/_type_user/popup_type_user.css");
 @import url("../blocks/popup/_type_error/popup_type_error.css");
 
+@import url("../blocks/popup/_type_loader/popup_type_loader.css");
+@import url("../blocks/popup/__loader/popup__loader.css");
+
 /*Удалить*/
 /* @import url("../blocks/popup/_loader-screen/popup_loader-screen.css"); */
 /* @import url("../blocks/popup/__loader/popup__loader.css"); */

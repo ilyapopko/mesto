@@ -11,18 +11,15 @@ import UserInfo from "../components/UserInfo.js";
 import {editProfileButton, addCardButton, editAvatarButton, selectors} from '../utils/constants.js';
 
 import PopupWithError from '../components/PopupWithError.js';
+import Popup from '../components/Popup';
 
 //TODO: Переделать
-// import PopupWithLoading from '../components/PopupWithLoading.js';
 // import ToolTipWithLikes from '../components/ToolTipWithLikes.js';
 
 
-
-//TODO: Переделать
 //* Инициализация Лоадера начальной загрузки
-// const popupLoader = new PopupWithLoading('.popup_loader-screen');
-// popupLoader.show();
-
+const popupLoader = new Popup('.popup_type_loader');
+popupLoader.show();
 
 //* Инициализация окна с ошибкой
 const errorPopup = new PopupWithError('.popup_type_error');
@@ -103,7 +100,7 @@ popupViewCard.setEventListeners();
 //* Обработчик удаления карточки на сервере
 function handleConfirmDeleteCard(card) {
   popupDeleteCard.showLoadingProcess();
-  apiServer.deleteCard(card.getIdCard())
+  apiServer.deleteCard(card.getCardInfo().id)
     .then(() => {
       cardsContainer.removeCardFromList(card);
       card.delete();
@@ -134,7 +131,7 @@ function handleLikeClick (evt) {
   //TODO: Переделать
   // toolTipLikes.hide();
   // this.showLoader();
-  apiServer.setLikeCard(this.isLiked(), this.getIdCard())
+  apiServer.setLikeCard(this.isLiked(), this.getCardInfo().id)
   .then(dataCard => {
     this.setLikes(dataCard.likes);
     //TODO: Переделать
@@ -210,7 +207,6 @@ Promise.all([apiServer.getUserProperties(), apiServer.getAllCards()])
     errorPopup.show(err);
   })
   .finally(() => {
-    //TODO: Переделать
-    // popupLoader.hide();
+    popupLoader.hide();
   });
 
