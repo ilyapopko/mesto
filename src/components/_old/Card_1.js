@@ -64,9 +64,11 @@ export default class Card {
       this._elementLikeButton.classList.remove('card__like-button_active')
     }
   }
+
   getIdCard() {
     return this._id;
   }
+
   getCardInfo() {
     return {id: this._id, name: this._name, link: this._link, element: this};
   }

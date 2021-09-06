@@ -35,6 +35,7 @@
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 
 @import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/_type_user/popup_type_user.css");
 
 /*Удалить*/
 /* @import url("../blocks/popup/_loader-screen/popup_loader-screen.css"); */

@@ -17,7 +17,6 @@
     <main>
       <section class="profile">
         <div class="profile__avatar-container">
-          <!-- <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка"> -->
           <img class="profile__avatar" src="" alt="Аватарка">
           <button class="profile__edit-avatar-button" type="button" aria-label="Редактировать аватарку"></button>
         </div>
@@ -30,7 +29,7 @@
       <section class="cards">
       </section>
 
-      <article class="popup popup_edit-profile">
+      <article class="popup popup_type_user popup_type_edit-profile">
         <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile" novalidate>
           <h2 class="popup__heading">Редактировать профиль</h2>
           <fieldset class="popup__container-info">
@@ -44,7 +43,20 @@
         </form>
       </article>
 
-      <article class="popup popup_add-card">
+      <article class="popup popup_type_user popup_type_edit-avatar">
+        <form action="#" class="popup__container" name="formEditAvatar" id="formEditAvatar" novalidate>
+          <h2 class="popup__heading">Обновить аватар</h2>
+          <fieldset class="popup__container-info">
+            <input type="url" class="popup__edit-field" id="avatar-link" name="avatar"  placeholder="Ссылка на картинку" required>
+            <span class="popup__input-error" id="avatar-link-error"></span>
+          </fieldset>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button class="popup__close-button" type="button"></button>
+        </form>
+      </article>
+
+
+      <article class="popup popup_type_user popup_type_add-card">
         <form action="#" class="popup__container" name="formAddCard" id="formAddCard" novalidate>
           <h2 class="popup__heading">Новое место</h2>
           <fieldset class="popup__container-info">
@@ -58,7 +70,7 @@
         </form>
       </article>
 
-      <div class="popup popup_view-card">
+      <div class="popup popup_type_user popup_type_view-card">
         <div class="popup__photo-container">
           <img src="#" alt="Фотография" class="popup__image">
           <p class="popup__photo-caption"></p>
@@ -66,25 +78,14 @@
         </div>
       </div>
 
-      <div class="popup popup_confirm-delete">
+      <article class="popup popup_type_user popup_type_confirm-delete">
         <form action="#" class="popup__container" name="formConfirmDelete" id="formConfirmDelete" novalidate>
           <h2 class="popup__heading">Вы уверены?</h2>
           <button class="popup__save-button" type="submit">Да</button>
           <button class="popup__close-button" type="button"></button>
         </form>
-      </div>
+      </article>
 
-      <div class="popup popup_edit-avatar">
-        <form action="#" class="popup__container" name="formEditAvatar" id="formEditAvatar" novalidate>
-          <h2 class="popup__heading">Обновить аватар</h2>
-          <fieldset class="popup__container-info">
-            <input type="url" class="popup__edit-field" id="avatar-link" name="avatar"  placeholder="Ссылка на картинку" required>
-            <span class="popup__input-error" id="avatar-link-error"></span>
-          </fieldset>
-          <button class="popup__save-button" type="submit">Сохранить</button>
-          <button class="popup__close-button" type="button"></button>
-        </form>
-      </div>
 
       <!-- <div class="popup popup_loader-screen">
         <div class="popup__loader">Загрузка</div>
