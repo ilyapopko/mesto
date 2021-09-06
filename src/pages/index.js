@@ -11,11 +11,8 @@ import UserInfo from "../components/UserInfo.js";
 import {editProfileButton, addCardButton, editAvatarButton, selectors} from '../utils/constants.js';
 
 import PopupWithError from '../components/PopupWithError.js';
-import Popup from '../components/Popup';
-
-//TODO: Переделать
-// import ToolTipWithLikes from '../components/ToolTipWithLikes.js';
-
+import Popup from '../components/Popup.js';
+import PopupWithViewLikes from '../components/PopupWithViewLikes.js';
 
 //* Инициализация Лоадера начальной загрузки
 const popupLoader = new Popup('.popup_type_loader');
@@ -93,9 +90,8 @@ editAvatarButton.addEventListener('click', () => {
 const popupViewCard = new PopupWithImage('.popup_type_view-card');
 popupViewCard.setEventListeners();
 
-//TODO: Переделать
 //* Окошко просмотра лайков
-// const toolTipLikes = new ToolTipWithLikes('.tool-tip_likes');
+const popupViewLikes = new PopupWithViewLikes('.popup_type_views-likes');
 
 //* Обработчик удаления карточки на сервере
 function handleConfirmDeleteCard(card) {
@@ -129,30 +125,28 @@ function handleDeleteCard() {
 //* Обработчик клика на сердечко
 function handleLikeClick (evt) {
   //TODO: Переделать
-  // toolTipLikes.hide();
+  popupViewLikes.hide();
   // this.showLoader();
   apiServer.setLikeCard(this.isLiked(), this.getCardInfo().id)
   .then(dataCard => {
     this.setLikes(dataCard.likes);
     //TODO: Переделать
     // this.hideLoader();
-    // toolTipLikes.show(evt, this.getLikes(), currentUserId);
+    popupViewLikes.show(evt, this.getLikes(), currentUserId);
   })
   .catch((err) => {
     errorPopup.show(err);
   });
 }
 
-//TODO: Переделать
 //* Обработчик наведения на сердечко
 function handleLikeMouseOver (evt) {
-  // toolTipLikes.show(evt, this.getLikes(), currentUserId);
+  popupViewLikes.show(evt, this.getLikes(), currentUserId);
 }
 
-//TODO: Переделать
 //* Обработчик ухода с сердечка
 function handleLikeMouseOut () {
-  // toolTipLikes.hide();
+  popupViewLikes.hide();
 }
 
 //* Вспомогательная функция для не дублирования кода генерации карточки при создании

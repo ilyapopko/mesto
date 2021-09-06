@@ -1,13 +1,13 @@
-import ToolTip from "./ToolTip.js";
+import Popup from "./Popup.js";
 import { formattingUserName } from "../utils/utils.js";
 
-export default class ToolTipWithLikes extends ToolTip {
+export default class PopupWithViewLikes extends Popup {
   _users;
   _currentUserId;
 
   constructor(selector) {
     super(selector);
-    this._users = this._dialog.querySelector(".tool-tip__users");
+    this._users = this._dialog.querySelector(".popup__like-users");
   }
 
   _setPosition(x, y, relativeY) {
@@ -21,15 +21,15 @@ export default class ToolTipWithLikes extends ToolTip {
 
   _getTemplate() {
     return document
-      .querySelector("#tool-tip-like-user")
-      .content.querySelector(".tool-tip__user")
+      .querySelector("#popup-like-user")
+      .content.querySelector(".popup__like-user")
       .cloneNode(true);
   }
 
   _renderUser(user) {
     const userElement = this._getTemplate();
-    userElement.querySelector(".tool-tip__user-avatar").src = user.avatar;
-    userElement.querySelector(".tool-tip__user-name").textContent =
+    userElement.querySelector(".popup__like-user-avatar").src = user.avatar;
+    userElement.querySelector(".popup__like-user-name").textContent =
     this._currentUserId === user._id ? "Вы" : user.name;
     return userElement;
   }
@@ -40,7 +40,7 @@ export default class ToolTipWithLikes extends ToolTip {
         this._users.prepend(this._renderUser(user));
       });
     }
-    this._dialog.querySelector(".tool-tip__header").textContent =
+    this._dialog.querySelector(".popup__header").textContent =
       "Оценили: " + Array.from(dataUsers).length + " " + formattingUserName(Array.from(dataUsers).length) + ":";
   }
 
@@ -49,7 +49,7 @@ export default class ToolTipWithLikes extends ToolTip {
     this._currentUserId = currentUserId;
     this._renderingUsers(dataUsers);
     this._setPosition(pageX, pageY, clientY);
-    this._dialog.classList.add("tool-tip_opened");
+    super.show();
   }
 
 }

@@ -1,8 +1,0 @@
-.tool-tip{
-  position: absolute;
-  background-color: rgba(256, 256, 256, .3);
-  border-radius: 5px;
-  padding: 10px;
-  visibility: hidden;
-  opacity: 0;
-}

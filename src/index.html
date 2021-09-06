@@ -31,7 +31,7 @@
 
       <article class="popup popup_type_user popup_type_edit-profile">
         <form action="#" class="popup__container" name="formEditProfile" id="formEditProfile" novalidate>
-          <h2 class="popup__heading">Редактировать профиль</h2>
+          <h2 class="popup__header">Редактировать профиль</h2>
           <fieldset class="popup__container-info">
             <input type="text" class="popup__edit-field" id="author-name" placeholder="Автор" name="name" minlength="2" maxlength="40" required>
             <span id="author-name-error" class="popup__input-error"></span>
@@ -45,7 +45,7 @@
 
       <article class="popup popup_type_user popup_type_edit-avatar">
         <form action="#" class="popup__container" name="formEditAvatar" id="formEditAvatar" novalidate>
-          <h2 class="popup__heading">Обновить аватар</h2>
+          <h2 class="popup__header">Обновить аватар</h2>
           <fieldset class="popup__container-info">
             <input type="url" class="popup__edit-field" id="avatar-link" name="avatar"  placeholder="Ссылка на картинку" required>
             <span class="popup__input-error" id="avatar-link-error"></span>
@@ -58,7 +58,7 @@
 
       <article class="popup popup_type_user popup_type_add-card">
         <form action="#" class="popup__container" name="formAddCard" id="formAddCard" novalidate>
-          <h2 class="popup__heading">Новое место</h2>
+          <h2 class="popup__header">Новое место</h2>
           <fieldset class="popup__container-info">
             <input type="text" class="popup__edit-field" id="place-name" placeholder="Название" name="name" minlength="2" maxlength="30" required>
             <span id="place-name-error" class="popup__input-error"></span>
@@ -80,7 +80,7 @@
 
       <article class="popup popup_type_user popup_type_confirm-delete">
         <form action="#" class="popup__container" name="formConfirmDelete" id="formConfirmDelete" novalidate>
-          <h2 class="popup__heading">Вы уверены?</h2>
+          <h2 class="popup__header">Вы уверены?</h2>
           <button class="popup__save-button" type="submit">Да</button>
           <button class="popup__close-button" type="button"></button>
         </form>
@@ -100,12 +100,11 @@
         <div class="popup__loader">Загрузка</div>
       </div>
 
-      <!-- <article class="tool-tip tool-tip_likes">
-        <h2 class="tool-tip__header"></h2>
-        <ul class="tool-tip__users">
+      <article class="popup popup_type_views-likes">
+        <h2 class="popup__header popup__header_size_small"></h2>
+        <ul class="popup__like-users">
         </ul>
-      </article> -->
-
+      </article>
 
     </main>
 
@@ -129,12 +128,12 @@
       </article>
     </template>
 
-    <!-- <template id = "tool-tip-like-user">
-      <li class="tool-tip__user">
-        <img class="tool-tip__user-avatar" src="#" alt="Аватарка">
-        <p class="tool-tip__user-name"></p>
+    <template id = "popup-like-user">
+      <li class="popup__like-user">
+        <img class="popup__like-user-avatar" src="#" alt="Аватарка">
+        <p class="popup__like-user-name"></p>
       </li>
-    </template> -->
+    </template>
 
   </div>
 </body>

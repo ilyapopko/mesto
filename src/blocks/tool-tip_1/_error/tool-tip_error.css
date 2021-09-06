@@ -1,9 +1,0 @@
-.tool-tip_error {
-  display: block;
-  background-color: rgba(256, 256, 256, .9);
-  border: 1px solid darkgray;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  margin: auto 10px;
-  visibility: visible;
-  opacity: 1;
-}
