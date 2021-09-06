@@ -11,14 +11,14 @@ export default class PopupWithUser extends Popup {
 
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      this.close();
+      this.hide();
     }
   }
 
   setEventListeners() {
     this._dialog.addEventListener('mousedown', (evt) => {
       if (evt.target === this._dialog || evt.target === this._closeButton) {
-        this.close();
+        this.hide();
       }
     });
   }

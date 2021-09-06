@@ -15,7 +15,7 @@ export default class PopupWithConfirmation extends PopupWithUser {
 
   show(card) {
     this._card = card;
-    super.open();
+    super.show();
   }
 
   setEventListeners() {
