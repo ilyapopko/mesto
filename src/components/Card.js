@@ -21,9 +21,10 @@ export default class Card {
   _elementAuthor
 
 
-  constructor(data, templateSelector, handleCardClick,
+  constructor(data, templateSelector, currentUserId, handleCardClick,
                 handleDeleteClick, handleLikeClick, handleLikeMouseOver,
-                handleLikeMouseOut, handleCardGoSource, handleEditCard, currentUserId) {
+                handleLikeMouseOut, handleCardGoSource, handleEditCard,
+                handleAuthorMouseOver, handleAuthorMouseOut) {
     this._name = data.name;
     this._link = data.link;
     this._owner = data.owner;
@@ -38,6 +39,8 @@ export default class Card {
     this._handleLikeMouseOut = handleLikeMouseOut.bind(this);
     this._handleCardGoSource = handleCardGoSource.bind(this);
     this._handleEditCard = handleEditCard.bind(this);
+    this._handleAuthorMouseOver = handleAuthorMouseOver.bind(this);
+    this._handleAuthorMouseOut = handleAuthorMouseOut.bind(this);
     this._setupImageProperties = this._setupImageProperties.bind(this);
   }
 
@@ -64,10 +67,15 @@ export default class Card {
     this._elementLikeButton.addEventListener('mouseout', () => {
       this._handleLikeMouseOut();
     });
+    this._elementAuthor.addEventListener('mouseover', (evt) => {
+      this._handleAuthorMouseOver(evt);
+    });
+    this._elementAuthor.addEventListener('mouseout', () => {
+      this._handleAuthorMouseOut();
+    });
     this._elementEditButton.addEventListener('click', () => {
       this._handleEditCard();
     });
-
     this._elementImage.addEventListener('load', () => {
       this._setupImageProperties();
     })
@@ -91,7 +99,7 @@ export default class Card {
     this._elementName.textContent = this._name;
     this._elementImage.src = this._link;
     this._elementImage.alt = 'Фотография ' + this._name;
-    this._elementAuthor.textContent = 'Добавил: ' + this._owner.name;
+    this._elementAuthor.textContent = this._owner.name;
   }
 
   getCardInfo() {
@@ -150,7 +158,7 @@ export default class Card {
     this._elementEditButton = this._element.querySelector('.card__edit-button');
     this._elementGoSourceButton = this._element.querySelector('.card__go-source-button');
     this._elementLikesCount = this._element.querySelector('.card__like-count');
-    this._elementAuthor = this._element.querySelector('.card__author');
+    this._elementAuthor = this._element.querySelector('.card__author-name');
 
     //Заполним значения полей
     this._updateViewsCard();

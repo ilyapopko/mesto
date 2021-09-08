@@ -8,12 +8,11 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from "../components/UserInfo.js";
-import {editProfileButton, addCardButton, editAvatarButton, bugButton, selectors} from '../utils/constants.js';
-
 import PopupWithError from '../components/PopupWithError.js';
 import Popup from '../components/Popup.js';
 import PopupWithViewLikes from '../components/PopupWithViewLikes.js';
-
+import PopupWithViewAuthor from '../components/PopupWithViewAuthor.js';
+import {editProfileButton, addCardButton, editAvatarButton, bugButton, selectors} from '../utils/constants.js';
 import { formattingUserCount, goToPage } from "../utils/utils.js";
 
 //* Инициализация Лоадера начальной загрузки
@@ -97,6 +96,10 @@ popupViewCard.setEventListeners();
 //* Окошко просмотра лайков
 const popupViewLikes = new PopupWithViewLikes('.popup_type_views-likes', formattingUserCount);
 
+//* Окошко просмотра автора
+const popupViewAuthor = new PopupWithViewAuthor('.popup_type_views-card-author');
+
+
 //* Обработчик удаления карточки на сервере
 function handleConfirmDeleteCard(card) {
   popupDeleteCard.showLoadingProcess();
@@ -157,6 +160,17 @@ function handleLikeMouseOut () {
   popupViewLikes.hide();
 }
 
+//* Обработчик наведения на автора
+function handleAuthorMouseOver (evt) {
+  popupViewAuthor.show(evt, this.getCardInfo().owner);
+}
+
+//* Обработчик ухода с автора
+function handleAuthorMouseOut () {
+  popupViewAuthor.hide();
+}
+
+
 //* Обработчик клика на кнопке редактирования карточки
 function handleSubmitEditCard({name, link}) {
   popupEditCard.showLoadingProcess();
@@ -199,9 +213,9 @@ function handleEditCard() {
 
 //* Вспомогательная функция для не дублирования кода генерации карточки при создании
 function createdCard(data, currentUserId) {
-  const element = new Card(data, '#card-template', handleCardClick, handleDeleteCard,
+  const element = new Card(data, '#card-template', currentUserId, handleCardClick, handleDeleteCard,
                             handleLikeClick, handleLikeMouseOver, handleLikeMouseOut,
-                            handleCardGoSource, handleEditCard, currentUserId);
+                            handleCardGoSource, handleEditCard, handleAuthorMouseOver, handleAuthorMouseOut);
   return element;
 }
 
