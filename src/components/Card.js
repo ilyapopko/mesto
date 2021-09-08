@@ -78,17 +78,17 @@ export default class Card {
     return this._likes;
   }
 
-  setLikes(dataLikes) {
+  setLikes(dataLikes, preset = false ) {
     if (dataLikes) {
       this._likes = dataLikes;
     }
-    this._setLikeFlag(this.isLiked());
-    this._elementLikesCount.textContent = this._likes.length;
+    this._setLikeFlag(preset === false ? this.isLiked() : !this.isLiked());
+    this._elementLikesCount.textContent = this._likes.length + (preset === false ? 0 : 1);
   }
 
   isLiked() {
     return this._likes.some((likeUser) => {
-      return this._currentUserId === likeUser._id});
+      return likeUser._id === this._currentUserId});
   }
 
 
@@ -124,12 +124,11 @@ export default class Card {
     return this._element;
   }
 
-  //TODO: Переписать правильно
   updateCardInfo({name, id}) {
     if (this._owner._id !== id) {
       return;
     }
-    //Это не совсем корректно т.к. не изменяет данных владельца
+    this._owner.name = name;
     this._elementAuthor.textContent = 'Добавил: ' + name;
   }
 }

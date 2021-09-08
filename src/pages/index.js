@@ -19,7 +19,7 @@ const popupLoader = new Popup('.popup_type_loader');
 popupLoader.show();
 
 //* Инициализация окна с ошибкой
-const errorPopup = new PopupWithError('.popup_type_error');
+const popupError = new PopupWithError('.popup_type_error');
 
 
 //* Инициализация объекта с функционалом запросов
@@ -53,7 +53,7 @@ function handleSubmitEditProfile(inputData) {
       popupEditProfile.hide();
     })
     .catch(err => {
-      errorPopup.show(err);
+      popupError.show(err);
     });
   }
 
@@ -73,7 +73,7 @@ function handleSubmitEditAvatar({avatar}) {
       popupEditAvatar.hide();
     })
     .catch(err => {
-      errorPopup.show(err);
+      popupError.show(err);
     });
   }
 
@@ -104,7 +104,7 @@ function handleConfirmDeleteCard(card) {
       popupDeleteCard.hideLoadingProcess();
     })
     .catch(err => {
-      errorPopup.show(err);
+      popupError.show(err);
     });
 }
 
@@ -114,7 +114,8 @@ popupDeleteCard.setEventListeners();
 
 //* Обработчик клика на карточку
 function handleCardClick(name, link) {
-  popupViewCard.show(name, link);
+  // popupViewCard.show(name, link);
+  popupError.show('Error 23456');
 }
 
 //* Обработчик кнопки удаления карточки
@@ -124,18 +125,18 @@ function handleDeleteCard() {
 
 //* Обработчик клика на сердечко
 function handleLikeClick (evt) {
-  //TODO: Переделать
-  popupViewLikes.hide();
-  // this.showLoader();
-  apiServer.setLikeCard(this.isLiked(), this.getCardInfo().id)
+  popupViewLikes.hide(); //Сначала скроем окошко просмотра лайков
+  this.setLikes(undefined, true); //Далее установим флаг на карточке (предварительно), чтобы пользователь видел результат действия
+  apiServer.setLikeCard(this.isLiked(), this.getCardInfo().id) //Выполним запрос на сервер с установкой лайка
   .then(dataCard => {
-    this.setLikes(dataCard.likes);
-    //TODO: Переделать
-    // this.hideLoader();
-    popupViewLikes.show(evt, this.getLikes(), currentUserId);
+    this.setLikes(dataCard.likes);  //Произведем полноценную установка флага
   })
   .catch((err) => {
-    errorPopup.show(err);
+    this.setLikes();  //Это ошибка - откатим состояние кнопки в исходное положение
+    popupError.show(err);
+  })
+  .finally(() => {
+    popupViewLikes.show(evt, this.getLikes(), currentUserId); //Покажем окошко просмотра лайков
   });
 }
 
@@ -167,7 +168,7 @@ function handleSubmitAddCard(inputData) {
     popupAddCard.hideLoadingProcess();
   })
   .catch(err => {
-    errorPopup.show(err);
+    popupError.show(err);
   });
 }
 
@@ -198,7 +199,7 @@ Promise.all([apiServer.getUserProperties(), apiServer.getAllCards()])
     }
   })
   .catch(err => {
-    errorPopup.show(err);
+    popupError.show(err);
   })
   .finally(() => {
     popupLoader.hide();

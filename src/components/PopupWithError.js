@@ -17,9 +17,10 @@ export default class PopupWithError extends Popup {
     }
   }
 
-  //TODO: Переписать!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  _handleCloseFromMouseClick() {
-    this.hide();
+  _handleCloseFromMouseClick(evt) {
+    if (!evt.target.classList.contains('error-identification')) {
+      this.hide();
+    }
   }
 
   _formatTheError({status, statusText, url}) {
