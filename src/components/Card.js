@@ -21,7 +21,7 @@ export default class Card {
   _elementAuthor
 
 
-  constructor(data, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, currentUserId) {
+  constructor(data, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, handleCardGoSource, currentUserId) {
     this._name = data.name;
     this._link = data.link;
     this._owner = data.owner;
@@ -34,6 +34,7 @@ export default class Card {
     this._handleLikeClick = handleLikeClick.bind(this);
     this._handleLikeMouseOver = handleLikeMouseOver.bind(this);
     this._handleLikeMouseOut = handleLikeMouseOut.bind(this);
+    this._handleCardGoSource = handleCardGoSource.bind(this);
   }
 
   _getTemplate() {
@@ -49,6 +50,9 @@ export default class Card {
     });
     this._elementDeleteButton.addEventListener('click', () => {
       this._handleDeleteClick();
+    });
+    this._elementGoSourceButton.addEventListener('click', () => {
+      this._handleCardGoSource();
     });
     this._elementLikeButton.addEventListener('mouseover', (evt) => {
       this._handleLikeMouseOver(evt);

@@ -8,11 +8,13 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from "../components/UserInfo.js";
-import {editProfileButton, addCardButton, editAvatarButton, selectors} from '../utils/constants.js';
+import {editProfileButton, addCardButton, editAvatarButton, bugButton, editButton, goSourceButton, selectors} from '../utils/constants.js';
 
 import PopupWithError from '../components/PopupWithError.js';
 import Popup from '../components/Popup.js';
 import PopupWithViewLikes from '../components/PopupWithViewLikes.js';
+
+import { goToPage } from "../utils/utils.js";
 
 //* Инициализация Лоадера начальной загрузки
 const popupLoader = new Popup('.popup_type_loader');
@@ -21,6 +23,10 @@ popupLoader.show();
 //* Инициализация окна с ошибкой
 const popupError = new PopupWithError('.popup_type_error');
 
+//* Обработчик показа тестовой ошибки
+bugButton.addEventListener('click', () => {
+  popupError.show('Error 007: Это пример ошибки для демонстрации возможности оформления. :)');
+});
 
 //* Инициализация объекта с функционалом запросов
 const apiServer = new Api({
@@ -114,14 +120,22 @@ popupDeleteCard.setEventListeners();
 
 //* Обработчик клика на карточку
 function handleCardClick(name, link) {
-  // popupViewCard.show(name, link);
-  popupError.show('Error 23456');
+  popupViewCard.show(name, link);
 }
 
 //* Обработчик кнопки удаления карточки
 function handleDeleteCard() {
   popupDeleteCard.show(this);
 }
+
+//* Обработчик перехода к источнику картинки
+function handleCardGoSource() {
+  goToPage(this.getCardInfo().link, true);
+}
+
+
+
+
 
 //* Обработчик клика на сердечко
 function handleLikeClick (evt) {
@@ -152,7 +166,7 @@ function handleLikeMouseOut () {
 
 //* Вспомогательная функция для не дублирования кода генерации карточки при создании
 function createdCard(data, currentUserId) {
-  const element = new Card(data, '#card-template', handleCardClick, handleDeleteCard, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, currentUserId);
+  const element = new Card(data, '#card-template', handleCardClick, handleDeleteCard, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, handleCardGoSource, currentUserId);
   return element;
 }
 
@@ -180,6 +194,10 @@ popupAddCard.setEventListeners();
 addCardButton.addEventListener('click', () => {
   popupAddCard.show();
 });
+
+
+
+
 
 //* Инициализация объекта списка карточек
 const cardsContainer = new Section('.cards', (item) => {

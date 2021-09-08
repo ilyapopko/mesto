@@ -1,6 +1,6 @@
 const arrText = ["человек", "человека", "человек"];
 
-export function formattingUserName(num) {
+export function formattingUserCount(num) {
   if (num % 10 === 1 && num % 100 !== 11) {
     return arrText[0];
   } else if (
@@ -11,4 +11,9 @@ export function formattingUserName(num) {
     return arrText[1];
   }
   return arrText[2];
+}
+
+export function goToPage(url, newPage = false)
+{
+	newPage === true ? window.open(url) : document.location.href = url;
 }
