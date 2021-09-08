@@ -112,7 +112,6 @@ export default class Api {
 
   //TODO:Оставить функцию на будущее, в котором реализовать метод PATCH для карточек на своем сервере
   updateCardProperties(data) {
-    console.log(data.id);
     return fetch(`${this._url}/cards/${data.id}`, {
       method: "PATCH",
       headers: this._headers,
