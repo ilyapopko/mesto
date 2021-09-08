@@ -21,7 +21,9 @@ export default class Card {
   _elementAuthor
 
 
-  constructor(data, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, handleCardGoSource, currentUserId) {
+  constructor(data, templateSelector, handleCardClick,
+                handleDeleteClick, handleLikeClick, handleLikeMouseOver,
+                handleLikeMouseOut, handleCardGoSource, handleEditCard, currentUserId) {
     this._name = data.name;
     this._link = data.link;
     this._owner = data.owner;
@@ -35,6 +37,7 @@ export default class Card {
     this._handleLikeMouseOver = handleLikeMouseOver.bind(this);
     this._handleLikeMouseOut = handleLikeMouseOut.bind(this);
     this._handleCardGoSource = handleCardGoSource.bind(this);
+    this._handleEditCard = handleEditCard.bind(this);
     this._setupImageProperties = this._setupImageProperties.bind(this);
   }
 
@@ -58,9 +61,13 @@ export default class Card {
     this._elementLikeButton.addEventListener('mouseover', (evt) => {
       this._handleLikeMouseOver(evt);
     });
-    this._elementLikeButton.addEventListener('mouseout', (evt) => {
+    this._elementLikeButton.addEventListener('mouseout', () => {
       this._handleLikeMouseOut();
     });
+    this._elementEditButton.addEventListener('click', () => {
+      this._handleEditCard();
+    });
+
     this._elementImage.addEventListener('load', () => {
       this._setupImageProperties();
     })
@@ -79,14 +86,37 @@ export default class Card {
       this._elementImage.style.objectFit = 'none';
     }
   }
-  
-  getCardInfo() {
-    return {id: this._id, name: this._name, link: this._link, element: this, width: this._elementImage.width};
+
+  _updateViewsCard() {
+    this._elementName.textContent = this._name;
+    this._elementImage.src = this._link;
+    this._elementImage.alt = 'Фотография ' + this._name;
+    this._elementAuthor.textContent = 'Добавил: ' + this._owner.name;
   }
 
-  setCardInfo(name, link) {
+  getCardInfo() {
+    return {
+      id: this._id,
+      name: this._name,
+      link: this._link,
+      owner: this._owner,
+      likes: this._likes,
+      element: this
+    };
+  }
+
+  setCardInfo({_id, name, link, likes} ) {
     this._name = name;
     this.link = link;
+    this._id = _id;
+    this.setLikes(likes);
+    this._updateViewsCard();
+  }
+
+  updateCardOwnerInfo({name, about}) {
+    this._owner.name = name;
+    this._owner.about = about;
+    this._updateViewsCard();
   }
 
   getLikes() {
@@ -121,11 +151,9 @@ export default class Card {
     this._elementGoSourceButton = this._element.querySelector('.card__go-source-button');
     this._elementLikesCount = this._element.querySelector('.card__like-count');
     this._elementAuthor = this._element.querySelector('.card__author');
+
     //Заполним значения полей
-    this._elementName.textContent = this._name;
-    this._elementImage.src = this._link;
-    this._elementImage.alt = 'Фотография ' + this._name;
-    this._elementAuthor.textContent = 'Добавил: ' + this._owner.name;
+    this._updateViewsCard();
 
     //Установим наличие лайка юзера
     this.setLikes();
@@ -139,14 +167,6 @@ export default class Card {
     //Установим обработчики событий
     this._setEventListeners();
     return this._element;
-  }
-
-  updateCardInfo({name, id}) {
-    if (this._owner._id !== id) {
-      return;
-    }
-    this._owner.name = name;
-    this._elementAuthor.textContent = 'Добавил: ' + name;
   }
 }
 

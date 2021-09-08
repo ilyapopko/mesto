@@ -8,7 +8,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from "../components/UserInfo.js";
-import {editProfileButton, addCardButton, editAvatarButton, bugButton, editButton, goSourceButton, selectors} from '../utils/constants.js';
+import {editProfileButton, addCardButton, editAvatarButton, bugButton, selectors} from '../utils/constants.js';
 
 import PopupWithError from '../components/PopupWithError.js';
 import Popup from '../components/Popup.js';
@@ -53,9 +53,8 @@ function handleSubmitEditProfile(inputData) {
       userInfo.setUserInfo(returnedData);
       const currentUserInfo = userInfo.getUserInfo();
       cardsContainer.cardsList.forEach((elem) => {
-        elem.updateCardInfo(currentUserInfo);
+        elem.updateCardOwnerInfo(currentUserInfo);
       });
-      popupEditProfile.hideLoadingProcess();
       popupEditProfile.hide();
     })
     .catch(err => {
@@ -75,7 +74,6 @@ function handleSubmitEditAvatar({avatar}) {
     .then(returnedData => {
       userInfo.setUserInfo(returnedData);
       currentUserId = returnedData._id;
-      popupEditAvatar.hideLoadingProcess();
       popupEditAvatar.hide();
     })
     .catch(err => {
@@ -107,7 +105,6 @@ function handleConfirmDeleteCard(card) {
       cardsContainer.removeCardFromList(card);
       card.delete();
       popupDeleteCard.hide();
-      popupDeleteCard.hideLoadingProcess();
     })
     .catch(err => {
       popupError.show(err);
@@ -160,9 +157,51 @@ function handleLikeMouseOut () {
   popupViewLikes.hide();
 }
 
+//* Обработчик клика на кнопке редактирования карточки
+function handleSubmitEditCard({name, link}) {
+  popupEditCard.showLoadingProcess();
+
+  const currentCard = this.getCurrentCard();
+  //Установим name и link новыми а тем временем займемся удалением и добавлением
+  //Удаляем
+  apiServer.deleteCard(currentCard.getCardInfo().id)
+  .catch(err => {
+    popupError.show(err);
+    return;
+  });
+
+  //Добавляем
+  apiServer.addCard({name, link})
+  .then((returnedData) => {
+    currentCard.setCardInfo(returnedData);
+  })
+  .catch(err => {
+    //удалим карточку из списка
+    cardsContainer.removeCardFromList(currentCard);
+    currentCard.delete();
+    popupError.show(err);
+  })
+  .finally(() => {
+    popupEditCard.hide();
+  });
+
+}
+
+//* Окошко редактирования карточки со своим валидатором
+const popupEditCard = new PopupWithForm('.popup_type_edit-card', handleSubmitEditCard,
+                                          new FormValidator('.popup_type_edit-card', selectors));
+popupEditCard.setEventListeners();
+
+//* Обработчик клика на кнопке редактирования карточки
+function handleEditCard() {
+  popupEditCard.show(this.getCardInfo(), this);
+}
+
 //* Вспомогательная функция для не дублирования кода генерации карточки при создании
 function createdCard(data, currentUserId) {
-  const element = new Card(data, '#card-template', handleCardClick, handleDeleteCard, handleLikeClick, handleLikeMouseOver, handleLikeMouseOut, handleCardGoSource, currentUserId);
+  const element = new Card(data, '#card-template', handleCardClick, handleDeleteCard,
+                            handleLikeClick, handleLikeMouseOver, handleLikeMouseOut,
+                            handleCardGoSource, handleEditCard, currentUserId);
   return element;
 }
 
@@ -175,7 +214,6 @@ function handleSubmitAddCard(inputData) {
     cardsContainer.cardsList.push(card);
     cardsContainer.prependItem(card.generateCard());
     popupAddCard.hide();
-    popupAddCard.hideLoadingProcess();
   })
   .catch(err => {
     popupError.show(err);

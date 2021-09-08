@@ -109,4 +109,23 @@ export default class Api {
       return this._processingResult(err);
     });
   }
+
+  //TODO:Оставить функцию на будущее, в котором реализовать метод PATCH для карточек на своем сервере
+  updateCardProperties(data) {
+    console.log(data.id);
+    return fetch(`${this._url}/cards/${data.id}`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
+    }).then((result) => {
+      return this._processingResult(result);
+    })
+    .catch(err => {
+      return this._processingResult(err);
+    });
+  }
+
 }
