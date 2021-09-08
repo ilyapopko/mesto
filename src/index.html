@@ -12,9 +12,10 @@
 
     <header class="header">
       <a href="#" class="header__logo" aria-label="Логотип" target="_blank"></a>
-    </header>
-
+      <button class="header__bug-button" type="button" aria-label="Пример ошибки"></button>
+      </header>
     <main>
+
       <section class="profile">
         <div class="profile__avatar-container">
           <img class="profile__avatar" src="" alt="Аватарка">
@@ -115,7 +116,11 @@
     <template id ="card-template">
       <article class="card">
         <img src="#" alt="Фотография" class="card__image">
-        <button class="card__delete-button" type="button" aria-label="Удалить карточку"></button>
+        <div class="card__button-container">
+          <button class="card__delete-button" type="button" aria-label="Удалить карточку"></button>
+          <button class="card__edit-button" type="button" aria-label="Редактировать карточку"></button>
+          <button class="card__go-source-button" type="button" aria-label="Перейти к источнику"></button>
+        </div>
         <div class="card__description">
           <h2 class="card__caption"></h2>
           <div class="card__like-container">

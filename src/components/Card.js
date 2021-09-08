@@ -15,6 +15,8 @@ export default class Card {
   _elementImage
   _elementLikeButton
   _elementDeleteButton
+  _elementEditButton
+  _elementGoSourceButton
   _elementLikesCount
   _elementAuthor
 
@@ -27,7 +29,6 @@ export default class Card {
     this._likes = data.likes;
     this._currentUserId = currentUserId;
     this._templateSelector = templateSelector;
-
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick.bind(this);
     this._handleLikeClick = handleLikeClick.bind(this);
@@ -103,6 +104,8 @@ export default class Card {
     this._elementImage = this._element.querySelector('.card__image');
     this._elementLikeButton = this._element.querySelector('.card__like-button');
     this._elementDeleteButton = this._element.querySelector('.card__delete-button');
+    this._elementEditButton = this._element.querySelector('.card__edit-button');
+    this._elementGoSourceButton = this._element.querySelector('.card__go-source-button');
     this._elementLikesCount = this._element.querySelector('.card__like-count');
     this._elementAuthor = this._element.querySelector('.card__author');
     //Заполним значения полей
@@ -117,6 +120,7 @@ export default class Card {
     //Скроем корзину для не своих карточек
     if (this._currentUserId !== this._owner._id) {
       this._elementDeleteButton.style.display = 'none';
+      this._elementEditButton.style.display = 'none';
     }
 
     //Установим обработчики событий
