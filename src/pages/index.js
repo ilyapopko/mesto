@@ -14,7 +14,7 @@ import PopupWithError from '../components/PopupWithError.js';
 import Popup from '../components/Popup.js';
 import PopupWithViewLikes from '../components/PopupWithViewLikes.js';
 
-import { goToPage } from "../utils/utils.js";
+import { formattingUserCount, goToPage } from "../utils/utils.js";
 
 //* Инициализация Лоадера начальной загрузки
 const popupLoader = new Popup('.popup_type_loader');
@@ -97,7 +97,7 @@ const popupViewCard = new PopupWithImage('.popup_type_view-card');
 popupViewCard.setEventListeners();
 
 //* Окошко просмотра лайков
-const popupViewLikes = new PopupWithViewLikes('.popup_type_views-likes');
+const popupViewLikes = new PopupWithViewLikes('.popup_type_views-likes', formattingUserCount);
 
 //* Обработчик удаления карточки на сервере
 function handleConfirmDeleteCard(card) {
@@ -132,10 +132,6 @@ function handleDeleteCard() {
 function handleCardGoSource() {
   goToPage(this.getCardInfo().link, true);
 }
-
-
-
-
 
 //* Обработчик клика на сердечко
 function handleLikeClick (evt) {
@@ -194,10 +190,6 @@ popupAddCard.setEventListeners();
 addCardButton.addEventListener('click', () => {
   popupAddCard.show();
 });
-
-
-
-
 
 //* Инициализация объекта списка карточек
 const cardsContainer = new Section('.cards', (item) => {

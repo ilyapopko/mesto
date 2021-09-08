@@ -35,6 +35,7 @@ export default class Card {
     this._handleLikeMouseOver = handleLikeMouseOver.bind(this);
     this._handleLikeMouseOut = handleLikeMouseOut.bind(this);
     this._handleCardGoSource = handleCardGoSource.bind(this);
+    this._setupImageProperties = this._setupImageProperties.bind(this);
   }
 
   _getTemplate() {
@@ -60,6 +61,9 @@ export default class Card {
     this._elementLikeButton.addEventListener('mouseout', (evt) => {
       this._handleLikeMouseOut();
     });
+    this._elementImage.addEventListener('load', () => {
+      this._setupImageProperties();
+    })
   }
 
   _setLikeFlag(flag) {
@@ -70,8 +74,14 @@ export default class Card {
     }
   }
 
+  _setupImageProperties() {
+    if (this._elementImage.naturalWidth < 150)  {
+      this._elementImage.style.objectFit = 'none';
+    }
+  }
+  
   getCardInfo() {
-    return {id: this._id, name: this._name, link: this._link, element: this};
+    return {id: this._id, name: this._name, link: this._link, element: this, width: this._elementImage.width};
   }
 
   setCardInfo(name, link) {
@@ -95,7 +105,6 @@ export default class Card {
     return this._likes.some((likeUser) => {
       return likeUser._id === this._currentUserId});
   }
-
 
   delete() {
     this._element.remove();

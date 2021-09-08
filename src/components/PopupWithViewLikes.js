@@ -1,13 +1,12 @@
 import Popup from "./Popup.js";
-import { formattingUserCount } from "../utils/utils.js";
-
 export default class PopupWithViewLikes extends Popup {
   _users;
   _currentUserId;
 
-  constructor(selector) {
+  constructor(selector, formattingFunction) {
     super(selector);
     this._users = this._dialog.querySelector(".popup__like-users");
+    this._formattingFunction = formattingFunction;
   }
 
   _setPosition(x, y, relativeY) {
@@ -41,7 +40,7 @@ export default class PopupWithViewLikes extends Popup {
       });
     }
     this._dialog.querySelector(".popup__header").textContent =
-      "Оценили: " + Array.from(dataUsers).length + " " + formattingUserCount(Array.from(dataUsers).length) + ":";
+      "Оценили: " + Array.from(dataUsers).length + " " + this._formattingFunction(Array.from(dataUsers).length) + ":";
   }
 
   show({ pageX, pageY, clientY }, dataUsers, currentUserId) {
