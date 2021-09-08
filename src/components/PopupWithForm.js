@@ -5,7 +5,8 @@ export default class PopupWithForm extends PopupWithUser {
   _form
   _inputList
   _validator
-
+  _currentCard
+  
   constructor(selector, handleSubmitForm, validator) {
     super(selector);
     this._selector = selector;
@@ -46,13 +47,6 @@ export default class PopupWithForm extends PopupWithUser {
     }
     this._validator.clearErrors();
     this._currentCard = currentCard;
-    // if (currentCard) {
-    //   this._currentCard = currentCard;
-    // } else {
-    //   // delete this._currentCard;
-    //   this._currentCard = undefined;
-    //   // console.log('Сработала правильная ветка.')
-    // }
     super.show();
   }
 
