@@ -96,8 +96,28 @@ const cardsContainer = new Section('.cards', (item) => {
   cardsContainer.appendItem(card.generateCard());
 });
 
+//* Обработчик клика на кнопку "Предыдущая картинка"
+function handleLeftClick() {
+  if (this._currentIndex - 1 < 0) {
+    this._currentIndex = cardsContainer.cardsList.length - 1;
+  } else {
+    this._currentIndex = this._currentIndex - 1;
+  }
+  popupViewCard.setData(cardsContainer.cardsList[this._currentIndex].getCardInfo());
+}
+
+//* Обработчик клика на кнопку "Следующая картинка"
+function handleRightClick() {
+  if (this._currentIndex + 1 > cardsContainer.cardsList.length - 1) {
+    this._currentIndex = 0;
+  } else {
+    this._currentIndex = this._currentIndex + 1;
+  }
+  popupViewCard.setData(cardsContainer.cardsList[this._currentIndex].getCardInfo());
+}
+
 //* Окошко просмотра картинки карточки
-const popupViewCard = new PopupWithImage('.popup_type_view-card');
+const popupViewCard = new PopupWithImage('.popup_type_view-card', handleLeftClick, handleRightClick);
 popupViewCard.setEventListeners();
 
 //* Окошко просмотра лайков
@@ -106,6 +126,11 @@ const popupViewLikes = new PopupWithViewLikes('.popup_type_views-likes', formatt
 //* Окошко просмотра автора
 const popupViewAuthor = new PopupWithViewAuthor('.popup_type_views-card-author');
 
+//* Обработчик клика на карточку
+function handleCardClick() {
+  popupViewCard.setData(this.getCardInfo());
+  popupViewCard.show(cardsContainer.cardsList.indexOf(this));
+}
 
 //* Обработчик удаления карточки на сервере
 function handleConfirmDeleteCard(card) {
@@ -124,11 +149,6 @@ function handleConfirmDeleteCard(card) {
 //* Окошко подтверждения удаления карточки
 const popupDeleteCard = new PopupWithConfirmation('.popup_type_confirm-delete', handleConfirmDeleteCard);
 popupDeleteCard.setEventListeners();
-
-//* Обработчик клика на карточку
-function handleCardClick() {
-  popupViewCard.show(cardsContainer.cardsList.indexOf(this), cardsContainer.cardsList);
-}
 
 //* Обработчик кнопки удаления карточки
 function handleDeleteCard() {
@@ -177,13 +197,11 @@ function handleAuthorMouseOut () {
   popupViewAuthor.hide();
 }
 
-
 //* Обработчик клика на кнопке редактирования карточки
 function handleSubmitEditCard({name, link}) {
   popupEditCard.showLoadingProcess();
 
   const currentCard = this.getCurrentCard();
-  //Установим name и link новыми а тем временем займемся удалением и добавлением
   //Удаляем
   apiServer.deleteCard(currentCard.getCardInfo().id)
   .catch(err => {

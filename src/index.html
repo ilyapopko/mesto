@@ -85,11 +85,21 @@
       </article>
 
       <div class="popup popup_type_user popup_type_view-card">
+
+        <button class="popup__previous-button" type="button" aria-label="Предыдущая карточка">
+          <img src="<%=require('./images/arrowLeft.svg')%>" alt="Предыдущая карточка" class="popup__previous-image">
+        </button>
+
         <div class="popup__photo-container">
           <img src="#" alt="Фотография" class="popup__image">
           <p class="popup__photo-caption"></p>
           <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         </div>
+
+        <button class="popup__next-button" type="button" aria-label="Следующая карточка">
+          <img src="<%=require('./images/arrowRight.svg')%>" alt="Следующая карточка" class="popup__next-image">
+        </button>
+
       </div>
 
       <article class="popup popup_type_user popup_type_confirm-delete">

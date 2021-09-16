@@ -45,6 +45,10 @@
 
 @import url("../blocks/popup/_smooth-control/popup_smooth-control.css");
 @import url("../blocks/popup/_opened/popup_opened.css");
+@import url("../blocks/popup/__next-button/popup__next-button.css");
+@import url("../blocks/popup/__previous-button/popup__previous-button.css");
+@import url("../blocks/popup/__next-image/popup__next-image.css");
+@import url("../blocks/popup/__previous-image/popup__previous-image.css");
 @import url("../blocks/popup/__like-users/popup__like-users.css");
 @import url("../blocks/popup/__like-user/popup__like-user.css");
 @import url("../blocks/popup/__like-user-avatar/popup__like-user-avatar.css");
