@@ -89,6 +89,13 @@ editAvatarButton.addEventListener('click', () => {
   popupEditAvatar.show(userInfo.getUserInfo());
 });
 
+//* Инициализация объекта списка карточек
+const cardsContainer = new Section('.cards', (item) => {
+  const card = createdCard(item, currentUserId);
+  cardsContainer.cardsList.push(card);
+  cardsContainer.appendItem(card.generateCard());
+});
+
 //* Окошко просмотра картинки карточки
 const popupViewCard = new PopupWithImage('.popup_type_view-card');
 popupViewCard.setEventListeners();
@@ -119,8 +126,8 @@ const popupDeleteCard = new PopupWithConfirmation('.popup_type_confirm-delete', 
 popupDeleteCard.setEventListeners();
 
 //* Обработчик клика на карточку
-function handleCardClick(name, link) {
-  popupViewCard.show(name, link);
+function handleCardClick() {
+  popupViewCard.show(cardsContainer.cardsList.indexOf(this), cardsContainer.cardsList);
 }
 
 //* Обработчик кнопки удаления карточки
@@ -241,13 +248,6 @@ popupAddCard.setEventListeners();
 //* Обработчик открытия окна добавления карточки
 addCardButton.addEventListener('click', () => {
   popupAddCard.show();
-});
-
-//* Инициализация объекта списка карточек
-const cardsContainer = new Section('.cards', (item) => {
-  const card = createdCard(item, currentUserId);
-  cardsContainer.cardsList.push(card);
-  cardsContainer.appendItem(card.generateCard());
 });
 
 //*Получение данных с сервера и заполнение полей

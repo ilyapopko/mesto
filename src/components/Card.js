@@ -32,7 +32,7 @@ export default class Card {
     this._likes = data.likes;
     this._currentUserId = currentUserId;
     this._templateSelector = templateSelector;
-    this._handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick.bind(this);
     this._handleDeleteClick = handleDeleteClick.bind(this);
     this._handleLikeClick = handleLikeClick.bind(this);
     this._handleLikeMouseOver = handleLikeMouseOver.bind(this);
@@ -50,7 +50,7 @@ export default class Card {
 
   _setEventListeners() {
     this._elementImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
+      this._handleCardClick();
     });
     this._elementLikeButton.addEventListener('click', (evt) => {
       this._handleLikeClick(evt);
