@@ -12,10 +12,10 @@ import PopupWithError from '../components/PopupWithError.js';
 import Popup from '../components/Popup.js';
 import PopupWithViewLikes from '../components/PopupWithViewLikes.js';
 import PopupWithViewAuthor from '../components/PopupWithViewAuthor.js';
-import {editProfileButton, addCardButton, editAvatarButton, bugButton, selectors} from '../utils/constants.js';
-import { formattingUserCount, goToPage } from "../utils/utils.js";
+import {addCardButton, bugButton, editAvatarButton, editProfileButton, selectors} from '../utils/constants.js';
+import {formattingUserCount, goToPage} from "../utils/utils.js";
 
-//* Инициализация Лоадера начальной загрузки
+// * Инициализация Лоадера начальной загрузки
 const popupLoader = new Popup('.popup_type_loader');
 popupLoader.show();
 
@@ -37,7 +37,7 @@ const apiServer = new Api({
 });
 
 //* Инициализация сведений о пользователе
-const userInfo = new UserInfo('.profile__name','.profile__avatar','.profile__specialization');
+const userInfo = new UserInfo('.profile__name', '.profile__avatar', '.profile__specialization');
 let currentUserId = undefined;
 
 //* Окошко редактирования профиля пользователя со своим валидатором
@@ -59,7 +59,7 @@ function handleSubmitEditProfile(inputData) {
     .catch(err => {
       popupError.show(err);
     });
-  }
+}
 
 //* Обработчик открытия окна редактирования профиля
 editProfileButton.addEventListener('click', () => {
@@ -78,7 +78,7 @@ function handleSubmitEditAvatar({avatar}) {
     .catch(err => {
       popupError.show(err);
     });
-  }
+}
 
 //* Окошко редактирования аватарки со своим валидатором
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', handleSubmitEditAvatar, new FormValidator('.popup_type_edit-avatar', selectors));
@@ -161,39 +161,39 @@ function handleCardGoSource() {
 }
 
 //* Обработчик клика на сердечко
-function handleLikeClick (evt) {
+function handleLikeClick(evt) {
   popupViewLikes.hide(); //Сначала скроем окошко просмотра лайков
   this.setLikes(undefined, true); //Далее установим флаг на карточке (предварительно), чтобы пользователь видел результат действия
   apiServer.setLikeCard(this.isLiked(), this.getCardInfo().id) //Выполним запрос на сервер с установкой лайка
-  .then(dataCard => {
-    this.setLikes(dataCard.likes);  //Произведем полноценную установка флага
-  })
-  .catch((err) => {
-    this.setLikes();  //Это ошибка - откатим состояние кнопки в исходное положение
-    popupError.show(err);
-  })
-  .finally(() => {
-    popupViewLikes.show(evt, this.getLikes(), currentUserId); //Покажем окошко просмотра лайков
-  });
+    .then(dataCard => {
+      this.setLikes(dataCard.likes);  //Произведем полноценную установка флага
+    })
+    .catch((err) => {
+      this.setLikes();  //Это ошибка - откатим состояние кнопки в исходное положение
+      popupError.show(err);
+    })
+    .finally(() => {
+      popupViewLikes.show(evt, this.getLikes(), currentUserId); //Покажем окошко просмотра лайков
+    });
 }
 
 //* Обработчик наведения на сердечко
-function handleLikeMouseOver (evt) {
+function handleLikeMouseOver(evt) {
   popupViewLikes.show(evt, this.getLikes(), currentUserId);
 }
 
 //* Обработчик ухода с сердечка
-function handleLikeMouseOut () {
+function handleLikeMouseOut() {
   popupViewLikes.hide();
 }
 
 //* Обработчик наведения на автора
-function handleAuthorMouseOver (evt) {
+function handleAuthorMouseOver(evt) {
   popupViewAuthor.show(evt, this.getCardInfo().owner);
 }
 
 //* Обработчик ухода с автора
-function handleAuthorMouseOut () {
+function handleAuthorMouseOut() {
   popupViewAuthor.hide();
 }
 
@@ -204,31 +204,31 @@ function handleSubmitEditCard({name, link}) {
   const currentCard = this.getCurrentCard();
   //Удаляем
   apiServer.deleteCard(currentCard.getCardInfo().id)
-  .catch(err => {
-    popupError.show(err);
-    return;
-  });
+    .catch(err => {
+      popupError.show(err);
+      return undefined;
+    });
 
   //Добавляем
   apiServer.addCard({name, link})
-  .then((returnedData) => {
-    currentCard.setCardInfo(returnedData);
-  })
-  .catch(err => {
-    //удалим карточку из списка
-    cardsContainer.removeCardFromList(currentCard);
-    currentCard.delete();
-    popupError.show(err);
-  })
-  .finally(() => {
-    popupEditCard.hide();
-  });
+    .then((returnedData) => {
+      currentCard.setCardInfo(returnedData);
+    })
+    .catch(err => {
+      //удалим карточку из списка
+      cardsContainer.removeCardFromList(currentCard);
+      currentCard.delete();
+      popupError.show(err);
+    })
+    .finally(() => {
+      popupEditCard.hide();
+    });
 
 }
 
 //* Окошко редактирования карточки со своим валидатором
 const popupEditCard = new PopupWithForm('.popup_type_edit-card', handleSubmitEditCard,
-                                          new FormValidator('.popup_type_edit-card', selectors));
+  new FormValidator('.popup_type_edit-card', selectors));
 popupEditCard.setEventListeners();
 
 //* Обработчик клика на кнопке редактирования карточки
@@ -238,25 +238,24 @@ function handleEditCard() {
 
 //* Вспомогательная функция для не дублирования кода генерации карточки при создании
 function createdCard(data, currentUserId) {
-  const element = new Card(data, '#card-template', currentUserId, handleCardClick, handleDeleteCard,
-                            handleLikeClick, handleLikeMouseOver, handleLikeMouseOut,
-                            handleCardGoSource, handleEditCard, handleAuthorMouseOver, handleAuthorMouseOut);
-  return element;
+  return new Card(data, '#card-template', currentUserId, handleCardClick, handleDeleteCard,
+    handleLikeClick, handleLikeMouseOver, handleLikeMouseOut,
+    handleCardGoSource, handleEditCard, handleAuthorMouseOver, handleAuthorMouseOut);
 }
 
 //* Обработчик добавления карточки на сервер
 function handleSubmitAddCard(inputData) {
   popupAddCard.showLoadingProcess();
   apiServer.addCard(inputData)
-  .then((returnedData) => {
-    const card = createdCard(returnedData, currentUserId);
-    cardsContainer.cardsList.push(card);
-    cardsContainer.prependItem(card.generateCard());
-    popupAddCard.hide();
-  })
-  .catch(err => {
-    popupError.show(err);
-  });
+    .then((returnedData) => {
+      const card = createdCard(returnedData, currentUserId);
+      cardsContainer.cardsList.push(card);
+      cardsContainer.prependItem(card.generateCard());
+      popupAddCard.hide();
+    })
+    .catch(err => {
+      popupError.show(err);
+    });
 }
 
 //* Окошко добавления карточки со своим валидатором

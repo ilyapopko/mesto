@@ -1,30 +1,31 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   target: ['web', 'es5'],
-  entry: { main: './src/pages/index.js' },
+  // entry: { main: './src/pages/index.js' },
+  entry: ['./src/pages/index.js'],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'index.js',
-        publicPath: ''
+    publicPath: ''
   },
   mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     compress: true,
     port: 8080,
-    open: "Chrome"
-
+    open: "Chrome",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: '/node_modules/'
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
@@ -45,16 +46,17 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, {
           loader: 'css-loader',
-          options: { importLoaders: 1 }
+          options: {importLoaders: 1}
         },
-        'postcss-loader']
+          'postcss-loader']
       }
-      ]
+    ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template: path.resolve(__dirname,'src', 'index.html')
+    template: path.resolve(__dirname, 'src', 'index.html')
   }),
-  new CleanWebpackPlugin(),
-  new MiniCssExtractPlugin()
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 }
