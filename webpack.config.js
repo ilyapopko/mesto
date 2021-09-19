@@ -2,11 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
 
 module.exports = {
   target: ['web', 'es5'],
-  // entry: { main: './src/pages/index.js' },
   entry: ['./src/pages/index.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -15,10 +13,19 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    static: {
+      directory: path.resolve(__dirname, "./dist"),
+    },
     compress: true,
     port: 8080,
-    open: "Chrome",
+    open: {
+      app: {
+        name: "chrome",
+      },
+    },
+    client: {
+      logging: 'none',
+    },
   },
   module: {
     rules: [
@@ -57,6 +64,5 @@ module.exports = {
   }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 }
