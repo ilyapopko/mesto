@@ -22,9 +22,9 @@ export default class Card {
 
 
   constructor(data, templateSelector, currentUserId, handleCardClick,
-                handleDeleteClick, handleLikeClick, handleLikeMouseOver,
-                handleLikeMouseOut, handleCardGoSource, handleEditCard,
-                handleAuthorMouseOver, handleAuthorMouseOut) {
+              handleDeleteClick, handleLikeClick, handleLikeMouseOver,
+              handleLikeMouseOut, handleCardGoSource, handleEditCard,
+              handleAuthorMouseOver, handleAuthorMouseOut) {
     this._name = data.name;
     this._link = data.link;
     this._owner = data.owner;
@@ -90,7 +90,7 @@ export default class Card {
   }
 
   _setupImageProperties() {
-    if (this._elementImage.naturalWidth < 150)  {
+    if (this._elementImage.naturalWidth < 150) {
       this._elementImage.style.objectFit = 'none';
     }
   }
@@ -113,7 +113,7 @@ export default class Card {
     };
   }
 
-  setCardInfo({_id, name, link, likes} ) {
+  setCardInfo({_id, name, link, likes}) {
     this._name = name;
     this.link = link;
     this._id = _id;
@@ -131,7 +131,7 @@ export default class Card {
     return this._likes;
   }
 
-  setLikes(dataLikes, preset = false ) {
+  setLikes(dataLikes, preset = false) {
     if (dataLikes) {
       this._likes = dataLikes;
     }
@@ -141,7 +141,8 @@ export default class Card {
 
   isLiked() {
     return this._likes.some((likeUser) => {
-      return likeUser._id === this._currentUserId});
+      return likeUser._id === this._currentUserId
+    });
   }
 
   delete() {
